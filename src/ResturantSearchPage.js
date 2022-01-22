@@ -37,18 +37,21 @@ function ResturantSearchPage() {
     else {
     
       return (
-        <div className="">
-            
-        {ProductItem.map((product) => {
+        <React.Fragment>
+          
+          <ul className='ResturantItems'>
+          {ProductItem.map((product) => {
             return (
-                <div className='' key={product.id}>
+                <li className='ResturantItemOne' key={product.id}>
                 <p>{product.name}</p>
-                <img src={product.image_url} alt={product.name}/>
+                <div className='ResturantItemIMGContainer'>
+                <img className='ResturantItemIMG' src={product.image_url} alt={product.name}/>
                 </div>
+                </li>
             );
         })}
-    
-    </div>
+        </ul>
+        </React.Fragment>
         )
     }
 }
@@ -58,7 +61,7 @@ function ResturantSearchPage() {
   }
   return (
     <div className="">
-      <header className="">
+      
         <form onSubmit={handleSubmit}>
         <label>
         <input
@@ -72,7 +75,7 @@ function ResturantSearchPage() {
         <input type="submit" className="submit" value="Submit" />
       </form>
         {RenderAPICall()}
-      </header>
+     
     </div>
   );
 }
