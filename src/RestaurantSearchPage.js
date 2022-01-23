@@ -45,8 +45,27 @@ function RestaurantSearchPage() {
                 <li className='RestaurantItemOne' key={product.id}>
                 <p>{product.name}</p>
                 <div className='RestaurantItemIMGContainer'>
-                <img className='RestaurantItemIMG' src={product.image_url} alt={product.name}/>
+                  <img className='RestaurantItemIMG' src={product.image_url} alt={product.name}/>
                 </div>
+                {
+                  product.location.display_address.map( (location) => {
+                    return (
+                      <p>{location}</p>
+                    )
+                  })
+                }
+                
+                <p>{product.rating}</p>
+
+                {
+                  product.categories.map( (cuisine) => {
+                    return (
+                      <p>{cuisine.title}</p>
+                    )
+                  })
+                }
+
+                <p>{product.price}</p>
                 </li>
             );
         })}
