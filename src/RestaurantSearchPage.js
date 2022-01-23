@@ -1,7 +1,7 @@
 import './App.css';
 import React, { useState } from "react";
 
-function ResturantSearchPage() {
+function RestaurantSearchPage() {
   
   const [ProductItem, setProductItem] = useState([]);
   const [userQuery, setUserQuery] = useState('')
@@ -39,13 +39,13 @@ function ResturantSearchPage() {
       return (
         <React.Fragment>
           
-          <ul className='ResturantItems'>
+          <ul className='RestaurantItems'>
           {ProductItem.map((product) => {
             return (
-                <li className='ResturantItemOne' key={product.id}>
+                <li className='RestaurantItemOne' key={product.id}>
                 <p>{product.name}</p>
-                <div className='ResturantItemIMGContainer'>
-                <img className='ResturantItemIMG' src={product.image_url} alt={product.name}/>
+                <div className='RestaurantItemIMGContainer'>
+                <img className='RestaurantItemIMG' src={product.image_url} alt={product.name}/>
                 </div>
                 </li>
             );
@@ -80,4 +80,4 @@ function ResturantSearchPage() {
   );
 }
 
-export default ResturantSearchPage;
+export default RestaurantSearchPage;

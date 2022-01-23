@@ -1,13 +1,13 @@
-.ResturantItems {
+.RestaurantItems {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
 }
-.ResturantItemIMGContainer {
+.RestaurantItemIMGContainer {
   width: 400px;
   height: 400px;
 }
-.ResturantItemIMG {
+.RestaurantItemIMG {
   width: 100%;
   height: 100%;
 }
