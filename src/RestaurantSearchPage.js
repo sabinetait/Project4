@@ -1,10 +1,13 @@
 import './App.css';
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import LoadingAnimation from './LoadingAnimation.js';
 
 function RestaurantSearchPage() {
-  
+  const loader = document.querySelector(".lds-default");
+  const hideLoader = () => loader.classList.add('loader--hide');
   const [ProductItem, setProductItem] = useState([]);
-  const [userQuery, setUserQuery] = useState('')
+  const [userQuery, setUserQuery] = useState('');
+  const [loadingAnimation, setLoadingAnimation] = useState(false);
 
   const RenderAPI = () => {
 
@@ -23,7 +26,6 @@ function RestaurantSearchPage() {
       .then(data => {
         setProductItem(data.businesses);
         console.log(ProductItem)
-     
       });
     
     console.log(ProductItem)
@@ -38,6 +40,7 @@ function RestaurantSearchPage() {
     
       return (
         <React.Fragment>
+          <div className={`Loading${loadingAnimation ? " show" : " hide"}`}><LoadingAnimation/></div>
           
           <ul className='RestaurantItems'>
           {ProductItem.map((product) => {
@@ -76,7 +79,13 @@ function RestaurantSearchPage() {
 }
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const endAnimation = () => {
+      setLoadingAnimation(false);
+    }
     RenderAPI(); 
+    setLoadingAnimation(true);
+    setTimeout(endAnimation, 4000)
+    
   }
   return (
     <div className="">
