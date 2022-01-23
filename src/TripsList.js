@@ -5,7 +5,7 @@ const TripsList = () => {
         <>
             <FirebaseHandlingData />        
         </>
-    )
-}
+    );
+};
 
 export default TripsList;
