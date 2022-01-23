@@ -7,6 +7,8 @@ const FirebaseHandlingData = () => {
     const [ userInput, setUserInput ] = useState('');
     const database = getDatabase(firebase);
     const dbRef = ref(database);
+    const [Prompt, setPrompt] = useState(false); 
+    const [Fire, setFire] = useState(''); 
     
 
   useEffect(() => {
@@ -19,7 +21,7 @@ const FirebaseHandlingData = () => {
       setTrips(newState);
       console.log(response.val());
     })
-  }, [])
+  }, [dbRef])
 
   const handleInputChange = (event) => {
       setUserInput(event.target.value);
@@ -27,15 +29,27 @@ const FirebaseHandlingData = () => {
 
   const handleSubmit = (event) => {
       event.preventDefault();
+      
+    
+    if (userInput.length > 3) {
       push(dbRef, userInput);
       setUserInput('');
-  }
-
-  const handleRemoveTrip = (tripId) => {
-        const databaseReference = ref(database, `/${tripId}`)
-        remove(databaseReference)
     }
 
+    else { 
+
+      alert("needs to be Longer")
+    }
+  }
+
+  const handleRemoveTrip = () => {
+
+      const databaseReference = ref(database, `/${Fire}`)
+      remove(databaseReference);
+      setPrompt(false)
+      setFire('');
+  }
+  
   return (
       <>
         <ul>
@@ -43,10 +57,11 @@ const FirebaseHandlingData = () => {
           trips.map((trip) => {
             return (
               <li key={trip.key}>
-                  <p>{trip.name} - {trip.key}</p>
-                <button onClick={() => handleRemoveTrip(trip.key)}>Remove Trip</button>   
-            </li>
+                <p>{trip.name}</p>
+                <button onClick={() => { setPrompt(true); setFire(trip.key)}}>Click to Remove</button>  
+              </li>
             )
+            
           })
         }
       </ul>
@@ -55,7 +70,12 @@ const FirebaseHandlingData = () => {
           <label htmlFor="newTrip" aria-label="Add new trip"></label>
           <input placeholder="Add a new trip" type="text" id="newTrip" value={userInput} onChange={handleInputChange} />
           <button onClick={handleSubmit}>Add a trip</button>
-        </form>
+      </form>
+      
+      <div className={`PromptMenu${Prompt ? " opened" : " closed"}`}>
+        <button onClick={() => setPrompt(false)}>Go Back</button>
+        <button onClick={() => { handleRemoveTrip()}}>Remove Trip</button>
+      </div>
       </>
   )
 }

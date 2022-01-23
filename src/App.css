@@ -11,3 +11,37 @@
   width: 100%;
   height: 100%;
 }
+.closed {
+  display: none;
+}
+
+.opened {
+  display: flex;
+  position: fixed;
+  top: 50vh;
+  left: 50vw;
+  width: 400px;
+  height: 400px;
+  background-color: rgb(2, 2, 65);
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.opened button {
+  height: 60px;
+  width: 100px;
+}
+.upperNav {
+  width: 100%;
+  padding: 0;
+}
+.upperNav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 10px;
+  margin: 0;
+  width: 50%;
+}
