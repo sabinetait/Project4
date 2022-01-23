@@ -5,7 +5,6 @@ const HomePage = () => {
     return (
         <div>
             <h1>Bite-Size Traveling</h1>
-
             <div>
                 <Link to="/restaurant-search"><button>Create a new trip</button></Link>
                 <button>Choose an existing trip</button>

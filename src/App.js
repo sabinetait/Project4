@@ -1,48 +1,20 @@
 import './App.css';
 import RestaurantSearchPage from './RestaurantSearchPage';
 import { Routes, Route } from 'react-router-dom';
-import firebase from './Firebase';
-import { getDatabase, ref, onValue } from 'firebase/database';
-
 import NavBar from './NavBar.js';
 import HomePage from './HomePage.js';
-import { useState, useEffect } from 'react';
+import FirebaseHandlingData from './FirebaseHandlingData';
 
 function App() {
 
-  const [ books, setBooks ] = useState([]);
-  useEffect(() => {
-    const database = getDatabase(firebase);
-    const dbRef = ref(database);
-    onValue(dbRef, (response) => {
-      const newState = [];
-      const data = response.val();
-      for (let key in data) {
-        newState.push(data[key]);
-      }
-      setBooks(newState);
-      console.log(response.val());
-    })
-  }, [])
-  
   return (
     <div className="App">
-      <NavBar />
-      <ul>
-        {
-          books.map((book) => {
-            return (
-              <li><p>{book}</p></li>
-            )
-          })
-        }
-      </ul>
-
       <header className="App-header">
-       
+      <NavBar />
        <Routes>
           <Route path="/" element={ <HomePage/>}/>
-          <Route path="/restaurant-search" element={<RestaurantSearchPage/> }/>
+          <Route path="/restaurant-search" element={<RestaurantSearchPage />} />
+          <Route path="/trip-list" element={<FirebaseHandlingData/>}/>
        </Routes>
       </header>
     </div>
