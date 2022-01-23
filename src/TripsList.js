@@ -1,7 +1,10 @@
+import FirebaseHandlingData from './FirebaseHandlingData';
+
 const TripsList = () => {
     return (
-        <div></div>
-
+        <>
+            <FirebaseHandlingData />        
+        </>
     )
 }
 
