@@ -29,7 +29,7 @@ const FirebaseHandlingData = () => {
   };
 
   const writeUserData = () => {
-    let Rest = ["hi"];
+    let Rest = ["hi", 'bye'];
     const db = getDatabase();
     set(ref(db, 'city/'), {
       Rest
@@ -60,8 +60,7 @@ const FirebaseHandlingData = () => {
     if (trips.id === null || trips.id === "" || trips.id === undefined || trips.id.length === 0);
    else {
      return (
-       <div>
-       </div>
+       <div></div>
      )
    }
   }
@@ -92,13 +91,11 @@ const FirebaseHandlingData = () => {
     <>
       <div className="wrapper">
         {renderTrips()}
-        
         <form action="submit">
             <label htmlFor="newTrip" aria-label="Add new trip"></label>
             <input placeholder="Add a new trip" type="text" id="newTrip" value={userInput} onChange={handleInputChange} />
             <button onClick={handleSubmit}>Add a trip</button>
         </form>
-        <button onClick={writeUserData}>Click me</button>
           
         <div className={`PromptMenu${Prompt ? " opened" : " closed"}`}>
           <button onClick={() => setPrompt(false)}>Go Back</button>

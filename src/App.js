@@ -3,7 +3,8 @@ import RestaurantSearchPage from './RestaurantSearchPage';
 import { Routes, Route } from 'react-router-dom';
 import NavBar from './NavBar.js';
 import HomePage from './HomePage.js';
-import FirebaseHandlingData from './FirebaseHandlingData';
+// import FirebaseHandlingData from './FirebaseHandlingData';
+import RealtimeDb from './RealtimeDb';
 
 function App() {
 
@@ -14,7 +15,7 @@ function App() {
        <Routes>
           <Route path="/" element={ <HomePage/>}/>
           <Route path="/restaurant-search" element={<RestaurantSearchPage />} />
-          <Route path="/trip-list" element={<FirebaseHandlingData/>}/>
+          <Route path="/trip-list" element={<RealtimeDb />}/>
        </Routes>
       </header>
     </div>
