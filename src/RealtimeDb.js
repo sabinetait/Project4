@@ -12,37 +12,52 @@ const RealtimeDb = () => {
         if(response.val() === null){
             setProductList([])
         } else{
-            setProductList(response.val())
-            console.log(productList);
-            console.log(productList);
+            setProductList(Object.entries(response.val()))
+          
         }
         },[])
-    }, [productList])
-
-        console.log(productList);
-        console.log(productList);    
+    }, [database])
+    
+    console.log(productList);
 
     const writeUserData = () => {
     const db = getDatabase();
-    set(ref(db, 'City/'), {
+    set(ref(db, `City/Towns/`), {
         name: "asdafdsaf",
         city: "toronto",
         restaurant: "akldad"
     });
-  }
+    }
+    
+    const renderMap = () => {
+        
+        if (productList === null || productList === undefined || productList === "" || productList.length === 0);
+
+        else {
+
+            return (
+                <>
+                    <p className='wrapper'>{productList[0].Towns}</p>
+                </>
+
+               
+            )
+
+
+        }
+    }
+
+
     return (
         <>
             <p>Hello</p>
             <button onClick={writeUserData}>Click me</button>
-            {/* {productList.length === 0 ? null: <p>nothing returned</p>}
-            {productList.map((product) => {
-                return (
-                    <p>{product.name}</p>
-                )
-            })} */}
+            
+            {renderMap()}
+       
         </>
 
     )
 }
 
-export default RealtimeDb;
+    export default RealtimeDb;
