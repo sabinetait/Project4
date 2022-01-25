@@ -1,6 +1,7 @@
 import './App.css';
 import React, { useState, useEffect } from "react";
 import LoadingAnimation from './LoadingAnimation.js';
+import ButtonLiked from './ButtonLiked.js';
 // import { useParams } from 'react-router-dom';
 
 function RestaurantSearchPage(props) {
@@ -84,6 +85,7 @@ function RestaurantSearchPage(props) {
                       <p>{restaurant.price}</p>
                     </div> : null }
 
+                  <ButtonLiked cityName={checkedProps} image={restaurant.image_url} restaurantName={restaurant.name} />
                 </li>
               );
             }) }
