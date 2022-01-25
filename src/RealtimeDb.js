@@ -4,47 +4,35 @@ import { getDatabase, onValue, ref, set } from 'firebase/database';
 
 const RealtimeDb = () => {
     const database = getDatabase(firebase);
-    const [ productList, setProductList] = useState([]);
+    const [ cityList, setCityList] = useState([]);
 
     useEffect( ()=>{
         const dbRootAddress = ref(database, 'City');
         onValue(dbRootAddress, (response)=>{
         if(response.val() === null){
-            setProductList([])
-        } else{
-            setProductList(Object.entries(response.val()))
-          
+            setCityList([])
+        } else {
+            const data = response.val()
+            for(let key in data) {
+                console.log(key, data[key]);
+
+                if(key === 'Restaurant') {
+                    setCityList(data[key]);
+                    console.log(cityList);
+                }
+            }
         }
         },[])
     }, [database])
     
-    console.log(productList);
 
     const writeUserData = () => {
     const db = getDatabase();
-    set(ref(db, `City/Towns/`), {
-        name: "asdafdsaf",
-        city: "toronto",
-        restaurant: "akldad"
+    set(ref(db, `City/Restaurant/`), {
+        note1: "someeething1",
+        note2: "someeething2",
+        note3: "someeething3"
     });
-    }
-    
-    const renderMap = () => {
-        
-        if (productList === null || productList === undefined || productList === "" || productList.length === 0);
-
-        else {
-
-            return (
-                <>
-                    <p className='wrapper'>{productList[0].Towns}</p>
-                </>
-
-               
-            )
-
-
-        }
     }
 
 
@@ -53,11 +41,11 @@ const RealtimeDb = () => {
             <p>Hello</p>
             <button onClick={writeUserData}>Click me</button>
             
-            {renderMap()}
+            {/* {renderMap()} */}
        
         </>
 
     )
 }
 
-    export default RealtimeDb;
+export default RealtimeDb;
