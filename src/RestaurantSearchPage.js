@@ -8,8 +8,8 @@ function RestaurantSearchPage(props) {
   const [loadingAnimation, setLoadingAnimation] = useState(false);
   
   // const cityId = useParams();
-  const checkedProps = props.passedProps;
-
+  let checkedProps = props.passedProps;
+  console.log(checkedProps);
   useEffect( () => {
     const proxiedUrl = 'https://api.yelp.com/v3/businesses/search';
     const url = new URL('http://proxy.hackeryou.com');
@@ -17,7 +17,7 @@ function RestaurantSearchPage(props) {
     url.search = new URLSearchParams({
       reqUrl: proxiedUrl,
       'params[term]': 'restaurants',
-      'params[location]': "Chicago",
+      'params[location]': `${checkedProps}`,
       'proxyHeaders[Authorization]': 'Bearer SH6cIaiOu4yFDQ9M6w-8GGkgwaEdtzV1HmQ461hIForr3PDqa-_AwLRfvIkPqrDYKuSvAh9YRLkMSf2BsVEswIWTOGDwrnzM18PA8DEr6elO4j3eBDNqZGixXUbrYXYx',
     });
     
@@ -34,6 +34,7 @@ function RestaurantSearchPage(props) {
     if (RestaurantItem === null || RestaurantItem === ' ' || RestaurantItem === undefined || RestaurantItem.length === 0);
     
     else {
+
       console.log(checkedProps);
     
       return (

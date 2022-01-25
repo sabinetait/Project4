@@ -9,15 +9,13 @@ import { useState } from 'react/cjs/react.development';
 
 function App() {
   let [passedProps, setPassedProps] = useState("");
-  console.log(passedProps);
 
   const changeState = () => {
-    let setPassedProps = document.querySelector("#citySelect option:checked").value;
-    console.log(setPassedProps);
+    setPassedProps(document.querySelector("#citySelect option:checked").value);
   }
 
   const getValue = () => {
-    console.log(setPassedProps);
+
   }
 
   return (
