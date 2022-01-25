@@ -6,8 +6,9 @@ const RealtimeDb = () => {
     const [productList, setProductList] = useState([]);
     const [fire, setFire] = useState("");
     const [userInput, setUserInput] = useState('');
+    
     useEffect(() => {
-        const dbRootAddress = ref(database, 'City/Restaurant');
+        const dbRootAddress = ref(database, 'City/');
         onValue(dbRootAddress, (response) => {
             if (response.val() === null) {
                 setProductList([])
@@ -16,10 +17,11 @@ const RealtimeDb = () => {
             }
         }, [])
     }, [database])
-    console.log(productList);
+
     const writeUserData = (event) => {
         event.preventDefault();
         const db = getDatabase();
+
         set(ref(db, `City/${userInput}/`), {
             name: "Tacos Diner",
             city: "London",
@@ -31,38 +33,35 @@ const RealtimeDb = () => {
         else {
             return (
                 <>
-                    {Object.keys(productList).map((key) => (
+                    {Object.keys(productList).map((key, index) => (
                         <>
-                            <p key={key}>{productList[`${key}`]}</p>
-                            <button onClick={() => { handleRemoveTrip(); setFire(key) }}>Click to Remove</button>
+                            <li id={`${key}`} key={index}>
+                                <p >{productList[`${key}`].name}</p>
+                                <p >{productList[`${key}`].city}</p>
+                                <p >{productList[`${key}`].restaurant}</p>
+                                <button value={`${key}`} onClick={(event) => { setFire(`${event.target.value}`); handleRemoveTrip()}}>Click to Remove</button>
+                            </li>
+                        
                         </>
                     ))}
                 </>
             )
         }
     }
+
     const handleRemoveTrip = () => {
-        const databaseReference = ref(database, `City/Restaurant/${fire}`)
+        console.log(fire);
+        const databaseReference = ref(database, `City/${fire}`)
         remove(databaseReference);
     };
-
-    // const handleSubmit = (event) => {
-    //     event.preventDefault();
-    //     if (userInput.length > 3) {
-    //         push(database, userInput);
-    //         setUserInput('');
-    //     }
-    //     else {
-    //         alert("needs to be Longer");
-    //     }
-    // };
     
     const handleInputChange = (event) => {
         setUserInput(event.target.value);
     };
+
     return (
         <>
-            <p>Hello</p>
+            <h2>Trips List</h2>
             {renderMap()}
             <form action="submit">
                 <label htmlFor="newTrip" aria-label="Add new trip"></label>
@@ -73,3 +72,14 @@ const RealtimeDb = () => {
     )
 }
 export default RealtimeDb;
+
+
+//Important DO NOT DELETE IN ANY CIRCUMSTANCES NECESSARY FOR A COMPONENT THAT MAY BE NEEDED TO BE CREATED .........................
+
+
+//{Object.keys(productList).map((key) => (
+  //  <>
+    // <p key={key}>{productList[`${key}`]}</p>
+       // <button onClick={() => { handleRemoveTrip(); setFire(key) }}>Click to Remove</button>
+    // </>
+//))}
