@@ -85,7 +85,7 @@ const TripsList = () => {
         <>
             {renderDataBase()}
         </>
-    );
-};
+    )
+}
 
 export default TripsList;

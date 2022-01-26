@@ -35,5 +35,3 @@ function App() {
 }
 
 export default App;
-
-// Issue with passing props into our other pages
