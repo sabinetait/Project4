@@ -3,9 +3,10 @@ import RestaurantSearchPage from './RestaurantSearchPage';
 import { Routes, Route } from 'react-router-dom';
 import NavBar from './NavBar.js';
 import HomePage from './HomePage.js';
-// import FirebaseHandlingData from './FirebaseHandlingData';
+import TripsList from './TripsList.js';
+
+import { useState } from 'react';
 import RealtimeDb from './RealtimeDb';
-import { useState } from 'react/cjs/react.development';
 
 function App() {
   let [passedProps, setPassedProps] = useState("");
@@ -25,7 +26,8 @@ function App() {
        <Routes>
           <Route path="/" element={<HomePage passedProps={passedProps} changeState={changeState}/>}/>
           <Route path="/restaurant-search" element={<RestaurantSearchPage passedProps={passedProps} getValue={getValue} />} />
-          <Route path="/trip-list" element={<RealtimeDb />}/>
+          <Route path="/TripsList" element={<TripsList />} />
+          <Route path="/RealTime" element={<RealtimeDb />}/>
        </Routes>
       </header>
     </div>

@@ -1,13 +1,18 @@
 import { getDatabase, set, ref } from 'firebase/database';
 
 const ButtonLiked = (props) => {
+
     const writeUserData = (event) => {
+       
         event.preventDefault();
         const db = getDatabase();
-        //Regex passed api restaurant name
         let selectedRestaurantName = props.restaurantName.replace(/ /g,'');
         set(ref(db, `City/${props.cityName}/Restaurant/${selectedRestaurantName}`), {
             name: props.restaurantName, image: props.image
+        });
+        
+        set(ref(db, `Saved/${props.cityName}/`), {
+            name: `${props.cityName}`,
         });
     }
     return (
