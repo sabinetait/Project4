@@ -6,9 +6,9 @@ const ButtonLiked = (props) => {
        
         event.preventDefault();
         const db = getDatabase();
-        let selectedRestaurantName = props.restaurantName.replace(/ /g,'');
-        set(ref(db, `City/${props.cityName}/Restaurant/${selectedRestaurantName}`), {
-            name: props.restaurantName, image: props.image
+        
+        set(ref(db, `City/${props.cityName}/Restaurant/${props.restaurantName}`), {
+            name: props.restaurantName, image: props.image, message: ""
         });
         
         set(ref(db, `Saved/${props.cityName}/`), {

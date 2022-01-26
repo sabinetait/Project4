@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import firebase from './Firebase';
 import { getDatabase, onValue, ref, remove} from 'firebase/database';
 import './RealtimeDb.css'; 
+import AddNotes from './AddNotes.js';
 
 const RealtimeDb = (props) => {
   const database = getDatabase(firebase);
@@ -45,6 +46,8 @@ const RealtimeDb = (props) => {
                 src={productList[`${key}`].image}
                 alt={productList[`${key}`].name}
               />
+              <p>{productList[`${key}`].message}</p>
+              <AddNotes restaurantName={productList[`${key}`].name} cityName={UserCitySelected} restImage={productList[`${key}`].image}/>
               <button
                 value={`${key}`}
                 onClick={(event) => {
