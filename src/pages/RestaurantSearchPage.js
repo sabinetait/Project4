@@ -21,11 +21,22 @@ function RestaurantSearchPage() {
     });
     
     fetch(url)
-      .then(response => response.json())
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          throw new Error(res.statusText);
+        }
+      })
       .then(data => {
         setRestaurantItem(data.businesses);
-    });
-   
+      }).catch((err) => {
+        if (err.message === "Not Found") {
+          alert("Something went wrong.");
+        } else {
+          alert("Please try again.");
+        }
+      })
   }
     
   const RenderAPICall = () => {
@@ -36,7 +47,6 @@ function RestaurantSearchPage() {
     
       return (
         <>
-        
           <div className={`Loading${loadingAnimation ? " show" : " hide"}`}>
             <LoadingAnimation/>
           </div>
@@ -52,7 +62,6 @@ function RestaurantSearchPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
   };
   
   const handleInputChange = (event) => {
@@ -76,11 +85,9 @@ function RestaurantSearchPage() {
         <LoadingAnimation />
 
       )
-
     }
   }
 
-  
   return (
     <div className="wrapper-SearchPage">
       <h2>Where Would You Like to Go?</h2>
@@ -88,9 +95,8 @@ function RestaurantSearchPage() {
           <label htmlFor="newTrip" aria-label="Add new trip"></label>
           <input placeholder="Search for a city" type="text" id="newTrip" value={userInput} onChange={handleInputChange} />
         <button onClick={YELPAPICall}>Search</button>
-        
-      
       </form >
+
       {RenderAPICall()}
       {renderLoadingAnimation()}
     </div>

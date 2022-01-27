@@ -3,24 +3,6 @@ import ButtonLiked from './ButtonLiked.js'
 const RestaurantItemsMap = (props) => {
     const restItems = props.RestaurantItemsMap;
 
-    const renderPrice = () => {
-      if (price === null || price === undefined || price === '' || price.length === 0 )
-
-      { return (
-        <div className="restaurantRatingContainer">
-        <h3>Rating: <span className="restaurantRating">{rating}('Price unavailable')</span></h3>
-        </div>
-      )} else {
-        return (
-          <div className="restaurantRatingContainer">
-          <h3>Rating: <span className="restaurantRating">{rating}{price}</span></h3>
-          </div>
-        )
-      }
-    }
-
-    const {rating, price} = restItems;
-
     return (
         <>
             {restItems.map((restaurant) => {
@@ -30,8 +12,11 @@ const RestaurantItemsMap = (props) => {
                   
                   <h3>{restaurant.name}</h3>
 
-                  {renderPrice()}
-                  
+                  <div className='ratingAndPrice'>
+                      <h4>Rating: {restaurant.rating}</h4>
+                      <h4>Price: {restaurant.price}</h4>
+                  </div>
+          
                   <div className='restaurantItemImgContainer'>
                     <ButtonLiked userInputTerm={props.userInputTerm} cityName={`${props.userInput}`} image={restaurant.image_url} restaurantName={restaurant.name} />
                     <img className='RestaurantItemIMG' src={restaurant.image_url} alt={restaurant.name}/>

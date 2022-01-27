@@ -7,7 +7,7 @@ const ButtonLiked = (props) => {
         event.preventDefault();
         const db = getDatabase();
         
-        set(ref(db, `City/${props.cityName}/Restuarant/${props.restaurantName}`), {
+        set(ref(db, `City/${props.cityName}/Restaurant/${props.restaurantName}`), {
             name: props.restaurantName, image: props.image, message: ""
         });
         
