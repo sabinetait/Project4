@@ -12,7 +12,7 @@ function RestaurantSearchPage() {
   const YELPAPICall = () => {
     console.log(userInputTerm);
       const proxiedUrl = 'https://api.yelp.com/v3/businesses/search';
-      const url = new URL('http://proxy.hackeryou.com');
+      const url = new URL('https://proxy.hackeryou.com');
   
     url.search = new URLSearchParams({
       reqUrl: proxiedUrl,
