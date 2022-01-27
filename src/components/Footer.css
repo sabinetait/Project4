@@ -1,0 +1,12 @@
+footer {
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #283d38;
+  color: white;
+}
+
+.credits a {
+  color: white;
+}

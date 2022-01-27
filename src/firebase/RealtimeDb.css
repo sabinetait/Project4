@@ -1,0 +1,34 @@
+.dataBaseWrapper {
+  padding: 5% 5%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(5, 5, 49);
+  color: white;
+  min-height: 100vh;
+  height: 100%;
+}
+.titleContainer {
+  width: 100%;
+  font-size: var(--font-size--large);
+  text-align: center;
+}
+.DataBaseResultsList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+}
+.DataBaseResultsList li {
+  width: 400px;
+  height: 400px;
+  padding: 10px;
+  margin: 50px;
+  border: solid white 5px;
+  border-radius: 25px;
+}
+.DataBaseResultsList li img {
+  width: 100%;
+  height: 300px;
+}

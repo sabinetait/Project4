@@ -1,0 +1,106 @@
+.savedTrips-Wrappper {
+  padding: 5%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-image: url(../../Assets/image2.jpg);
+  background-size: cover;
+  background-position: center;
+  min-height: calc(100vh - 110px);
+  height: 100%;
+  color: white;
+  position: relative;
+}
+
+.FirebaseTripUserSaved {
+  list-style: none;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+}
+
+.FirebaseTripUserSaved li {
+  width: 325px;
+  height: 120px;
+  margin: 10px;
+}
+.FirebaseTripUserSaved button {
+  width: 325px;
+  height: 120px;
+  background-color: #283d38;
+  border: #283d38;
+  border-radius: 25px;
+  color: white;
+  font-family: Raleway;
+  font-size: 2rem;
+  font-weight: 800;
+  text-transform: capitalize;
+}
+.FirebaseTripUserSaved button:hover,
+.FirebaseTripUserSaved button:focus {
+  cursor: pointer;
+  background-color: white;
+  border: #283d38 solid 4px;
+  color: #283d38;
+}
+.savedTrips-Wrappper h2 {
+  font-size: 48px;
+}
+.TitleContainer {
+  width: 100%;
+  text-align: center;
+}
+.removeTrip {
+  position: absolute;
+  left: 50px;
+  bottom: 60px;
+}
+
+.removeTrip button {
+  width: 250px;
+  height: 100px;
+  background-color: red;
+  border: none;
+  border-radius: 25px;
+  color: white;
+  font-family: Raleway;
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.openRemovedTripMenu {
+  right: 0;
+  min-height: 100%;
+  display: flex;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 400px;
+  flex-direction: column;
+  background-color: purple;
+  z-index: 10;
+}
+
+.openRemovedTripMenu button {
+  text-transform: capitalize;
+  width: 100%;
+  height: 75px;
+}
+.openRemovedTripMenu button:hover {
+  border: solid 5px black;
+}
+
+.closedRemovedTripMenu {
+  display: none;
+}
+.RickMe {
+  position: absolute;
+  left: 5%;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+}
