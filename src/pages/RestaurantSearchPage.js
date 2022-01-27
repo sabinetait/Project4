@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import LoadingAnimation from '../components/LoadingAnimation.js';
-import ButtonLiked from '../components/ButtonLiked.js';
 import './SearchPage.css'
 import RestaurantItemsMap from "../components/RestaurantItemsMap.js";
 
@@ -8,15 +7,16 @@ function RestaurantSearchPage() {
   const [RestaurantItem, setRestaurantItem] = useState([]);
   const [loadingAnimation, setLoadingAnimation] = useState(false);
   const [userInput, setUserInput] = useState('');
+  const [userInputTerm, setUserInputTerm] = useState('');
   
   const YELPAPICall = () => {
-      
+    console.log(userInputTerm);
       const proxiedUrl = 'https://api.yelp.com/v3/businesses/search';
       const url = new URL('http://proxy.hackeryou.com');
   
     url.search = new URLSearchParams({
       reqUrl: proxiedUrl,
-      'params[term]': 'restaurants',
+      'params[term]': `${userInputTerm}`,
       'params[location]': `${userInput}`,
       'proxyHeaders[Authorization]': 'Bearer SH6cIaiOu4yFDQ9M6w-8GGkgwaEdtzV1HmQ461hIForr3PDqa-_AwLRfvIkPqrDYKuSvAh9YRLkMSf2BsVEswIWTOGDwrnzM18PA8DEr6elO4j3eBDNqZGixXUbrYXYx',
     });
@@ -42,8 +42,8 @@ function RestaurantSearchPage() {
             <LoadingAnimation/>
           </div>
           <div className="APIItemsContainer">
-          <ul className='RestaurantItems'>
-            <RestaurantItemsMap RestaurantItemsMap={RestaurantItem} userInput={userInput}/>
+            <ul className='RestaurantItems'>
+              <RestaurantItemsMap userInputTerm={userInputTerm} RestaurantItemsMap={RestaurantItem} userInput={userInput}/>
             </ul>
           </div>
         </>
@@ -80,6 +80,10 @@ function RestaurantSearchPage() {
 
     }
   }
+
+  const UpdateCat = (event) => {
+    setUserInputTerm(event.target.value); 
+  } 
   
   return (
     <div className="wrapper-SearchPage">
@@ -88,6 +92,14 @@ function RestaurantSearchPage() {
           <label htmlFor="newTrip" aria-label="Add new trip"></label>
           <input placeholder="Search for a city" type="text" id="newTrip" value={userInput} onChange={handleInputChange} />
         <button onClick={YELPAPICall}>Search</button>
+        
+        <select onChange={UpdateCat} className="customSelect categorySelect">
+        <option className="categoryType" value=''>Choose a Place</option>
+          <option className="categoryType" value='Hotel'>Hotel</option>
+          <option className="categoryType" value='Restaurant'>Restaurant</option>
+          <option className="categoryType" value='Museum'>Museum</option>
+        </select>
+
       </form >
       {RenderAPICall()}
       {renderLoadingAnimation()}

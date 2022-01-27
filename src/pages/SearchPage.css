@@ -9,8 +9,8 @@
 
 .searchPageFormApi button {
   cursor: pointer;
-  background-color: #283D38;
-  border: 1px solid #283D38;
+  background-color: #283d38;
+  border: 1px solid #283d38;
   border-radius: 10px;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
@@ -23,8 +23,8 @@
 .searchPageFormApi button:hover,
 .searchPageFormApi button:focus {
   background-color: white;
-  border: 1px solid #283D38;
-  color: #283D38;
+  border: 1px solid #283d38;
+  color: #283d38;
 }
 
 .searchPageFormApi input {
@@ -33,19 +33,18 @@
   font-size: 1.2rem;
   padding-left: 1.5%;
   border: none;
-  border-left: 1px solid #283D38;
-  border-top: 1px solid #283D38;
-  border-bottom: 1px solid #283D38;
+  border-left: 1px solid #283d38;
+  border-top: 1px solid #283d38;
+  border-bottom: 1px solid #283d38;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 }
 
-
 .wrapper-SearchPage {
-  background-color: #283D38;
+  background-color: #283d38;
   color: white;
   padding: 5%;
-  min-height: 100vh;
+  min-height: calc(100vh - 110px);
   height: 100%;
 }
 
@@ -61,6 +60,7 @@
 }
 .restaurantItemOne {
   margin: 20px 50px;
+  width: 375px;
 }
 .restaurantItems {
   display: flex;
@@ -77,8 +77,8 @@
 }
 .restaurantItemImgContainer {
   position: relative;
-  width: 400px;
-  height: 400px;
+  width: 100%;
+  height: 300px;
 }
 .restaurantItemImg {
   width: 100%;
@@ -90,13 +90,13 @@
   display: flex;
   justify-content: center;
   background-color: white;
-
 }
 
 .restaurantDetails {
   width: 50%;
   padding: 3%;
-  color: #283D38;
+  color: #283d38;
+  text-align: left;
 }
 
 .ButtonLiked {
@@ -104,6 +104,7 @@
   top: 0;
   left: 3px;
   z-index: 2;
+  cursor: pointer;
 }
 
 .ButtonLiked i {
@@ -112,5 +113,5 @@
 
 .ButtonLiked i:hover,
 .ButtonLiked i:focus {
-    color: gold;
+  color: gold;
 }

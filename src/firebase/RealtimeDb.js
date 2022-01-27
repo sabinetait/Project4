@@ -11,23 +11,42 @@ const RealtimeDb = (props) => {
   const [prompt, setPrompt] = useState(false);
 
   let UserCitySelected = props.buttonClicked;
+  let dbRootAddress = null; 
 
-  useEffect(() => {
-    const dbRootAddress = ref(database, `City/${UserCitySelected}/Restaurant/`);
+  const callRestaurantFirebase = () => {
 
-    onValue(
-      dbRootAddress,
-      (response) => {
-        if (response.val() === null) {
-          setProductList([]);
-        } else {
-          setProductList(response.val());
-        }
-      },
-      []
-    );
-  }, [database, UserCitySelected]);
+    dbRootAddress = ref(database, `City/${UserCitySelected}/Restaurant/`);
+    FirebaseCall(); 
 
+  }
+  const callMusesumFirebase = () => {
+
+    dbRootAddress = ref(database, `City/${UserCitySelected}/Museum/`);
+    FirebaseCall(); 
+    console.log(dbRootAddress);
+
+  }
+  const FirebaseCall = () => {
+   
+    useEffect(() => {
+
+      onValue(
+        dbRootAddress,
+        (response) => {
+          if (response.val() === null) {
+            setProductList([]);
+          } else {
+            setProductList(response.val());
+          }
+        },
+        []
+      );
+    }, []);
+  
+
+
+  }
+  
   const renderMap = () => {
     if (
       productList === null ||
@@ -76,7 +95,9 @@ const RealtimeDb = (props) => {
   return (
     <>
         <div className="dataBaseWrapper">
-            <div className='titleContainer'>
+        <div className='titleContainer'>
+          {callMusesumFirebase()}
+          {callRestaurantFirebase()}
               <h2>My Stops in {UserCitySelected}!</h2>
             </div>
         {renderMap()}

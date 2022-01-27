@@ -11,6 +11,7 @@
   display: flex;
   justify-content: flex-end;
   height: 100%;
+  position: relative;
 }
 
 .upperNav ul {
@@ -33,7 +34,19 @@
   font-size: var(--font-size--small);
   text-decoration: none;
   font-weight: 600;
-  color: #283D38;
+  color: #283d38;
+}
+
+.upperNav i {
+  font-size: 38px;
+  position: absolute;
+  left: 50px;
+  top: 10px;
+  color: #283d38;
+}
+
+.upperNav i:hover {
+  color: purple;
 }
 
 .upperNav ul a:hover {
