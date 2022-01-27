@@ -13,6 +13,10 @@ const [city, setCity] = useState("");
     const [videoMenu, setVideoMenu] = useState(false); 
   const [removeTripState, setRemoveTripState] = useState(false);
   const [prompt, setPrompt] = useState(false);
+  const [errorFirebase, setErrorFirebase] = useState(false); 
+
+
+
   const buttonClickedValue = (event) => {
     setbuttonClickedValueSetting(`${event.target.value}`);
     console.log(buttonClickedValueSetting);
@@ -27,6 +31,7 @@ const [city, setCity] = useState("");
       (response) => {
         if (response.val() === null) {
           setProductList([]);
+          setErrorFirebase(true); 
         } else {
           setProductList(response.val());
         }
@@ -45,6 +50,7 @@ const [city, setCity] = useState("");
     const dataSavedCityReference = ref(database, `Saved/${city}/`);
     remove(databaseReference);
     remove(dataSavedCityReference);
+    setPrompt(false);
     setCity("");
   };
 
@@ -128,10 +134,29 @@ const [city, setCity] = useState("");
     audio.pause();
 
   }
+
+  const renderFirebaseError = () => { 
+
+    if (errorFirebase === true) {
+      
+
+      return (
+
+        <p>No Results Returned Go Outside Loser</p>
+      )
+    }
+
+    else if (errorFirebase === false); 
+    
+    
+  }
+
+
   const renderDataBase = () => {
     if (databaseRender === false) {
       return (
-          <div className="savedTrips-Wrappper">
+        <div className="savedTrips-Wrappper">
+          {renderFirebaseError()}
               <video  className={`RickMe${videoMenu ? " show" : " hide"
                   }`} id="RickMe" src="./Assets/video/RickMe.mp4"></video>
               <audio id="beep" src="./Assets/beep.mp3"/>

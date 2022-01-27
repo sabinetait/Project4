@@ -11,25 +11,10 @@ const RealtimeDb = (props) => {
   const [prompt, setPrompt] = useState(false);
 
   let UserCitySelected = props.buttonClicked;
-  let dbRootAddress = null; 
-
-  const callRestaurantFirebase = () => {
-
-    dbRootAddress = ref(database, `City/${UserCitySelected}/Restaurant/`);
-    FirebaseCall(); 
-
-  }
-  const callMusesumFirebase = () => {
-
-    dbRootAddress = ref(database, `City/${UserCitySelected}/Museum/`);
-    FirebaseCall(); 
-    console.log(dbRootAddress);
-
-  }
-  const FirebaseCall = () => {
-   
-    useEffect(() => {
-
+  
+  useEffect(() => {
+      
+    const dbRootAddress = ref(database, `City/${UserCitySelected}/Restaurant/`);
       onValue(
         dbRootAddress,
         (response) => {
@@ -41,11 +26,8 @@ const RealtimeDb = (props) => {
         },
         []
       );
-    }, []);
+    }, [UserCitySelected, database]);
   
-
-
-  }
   
   const renderMap = () => {
     if (
@@ -96,8 +78,6 @@ const RealtimeDb = (props) => {
     <>
         <div className="dataBaseWrapper">
         <div className='titleContainer'>
-          {callMusesumFirebase()}
-          {callRestaurantFirebase()}
               <h2>My Stops in {UserCitySelected}!</h2>
             </div>
         {renderMap()}
