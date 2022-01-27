@@ -11,23 +11,24 @@ const RealtimeDb = (props) => {
   const [prompt, setPrompt] = useState(false);
 
   let UserCitySelected = props.buttonClicked;
-
+  
   useEffect(() => {
+      
     const dbRootAddress = ref(database, `City/${UserCitySelected}/Restaurant/`);
-
-    onValue(
-      dbRootAddress,
-      (response) => {
-        if (response.val() === null) {
-          setProductList([]);
-        } else {
-          setProductList(response.val());
-        }
-      },
-      []
-    );
-  }, [database, UserCitySelected]);
-
+      onValue(
+        dbRootAddress,
+        (response) => {
+          if (response.val() === null) {
+            setProductList([]);
+          } else {
+            setProductList(response.val());
+          }
+        },
+        []
+      );
+    }, [UserCitySelected, database]);
+  
+  
   const renderMap = () => {
     if (
       productList === null ||
@@ -76,7 +77,7 @@ const RealtimeDb = (props) => {
   return (
     <>
         <div className="dataBaseWrapper">
-            <div className='titleContainer'>
+        <div className='titleContainer'>
               <h2>My Stops in {UserCitySelected}!</h2>
             </div>
         {renderMap()}

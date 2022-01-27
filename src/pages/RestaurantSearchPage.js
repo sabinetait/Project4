@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import LoadingAnimation from '../components/LoadingAnimation.js';
-import ButtonLiked from '../components/ButtonLiked.js';
 import './SearchPage.css'
 import RestaurantItemsMap from "../components/RestaurantItemsMap.js";
 
@@ -10,13 +9,13 @@ function RestaurantSearchPage() {
   const [userInput, setUserInput] = useState('');
   
   const YELPAPICall = () => {
-      
+    
       const proxiedUrl = 'https://api.yelp.com/v3/businesses/search';
-      const url = new URL('http://proxy.hackeryou.com');
+      const url = new URL('https://proxy.hackeryou.com');
   
     url.search = new URLSearchParams({
       reqUrl: proxiedUrl,
-      'params[term]': 'restaurants',
+      'params[term]': 'Restuarant',
       'params[location]': `${userInput}`,
       'proxyHeaders[Authorization]': 'Bearer SH6cIaiOu4yFDQ9M6w-8GGkgwaEdtzV1HmQ461hIForr3PDqa-_AwLRfvIkPqrDYKuSvAh9YRLkMSf2BsVEswIWTOGDwrnzM18PA8DEr6elO4j3eBDNqZGixXUbrYXYx',
     });
@@ -42,8 +41,8 @@ function RestaurantSearchPage() {
             <LoadingAnimation/>
           </div>
           <div className="APIItemsContainer">
-          <ul className='RestaurantItems'>
-            <RestaurantItemsMap RestaurantItemsMap={RestaurantItem} userInput={userInput}/>
+            <ul className='RestaurantItems'>
+              <RestaurantItemsMap RestaurantItemsMap={RestaurantItem} userInput={userInput}/>
             </ul>
           </div>
         </>
@@ -80,6 +79,7 @@ function RestaurantSearchPage() {
 
     }
   }
+
   
   return (
     <div className="wrapper-SearchPage">
@@ -88,6 +88,8 @@ function RestaurantSearchPage() {
           <label htmlFor="newTrip" aria-label="Add new trip"></label>
           <input placeholder="Search for a city" type="text" id="newTrip" value={userInput} onChange={handleInputChange} />
         <button onClick={YELPAPICall}>Search</button>
+        
+      
       </form >
       {RenderAPICall()}
       {renderLoadingAnimation()}

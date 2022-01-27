@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import "./HomePage.css";
 
-const HomePage = () => {
+const HomePage = (props) => {
+
   return (
     <div className="wrapper-HomePage">
       <div className="HomePageContainer">
