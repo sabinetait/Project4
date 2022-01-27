@@ -46,17 +46,19 @@ const RealtimeDb = (props) => {
                 src={productList[`${key}`].image}
                 alt={productList[`${key}`].name}
               />
-              <p>{productList[`${key}`].message}</p>
-              <AddNotes restaurantName={productList[`${key}`].name} cityName={UserCitySelected} restImage={productList[`${key}`].image}/>
-              <button
-                value={`${key}`}
-                onClick={(event) => {
-                  setFire(`${event.target.value}`);
-                  handleRemoveTrip();
-                }}
-              >
-                Click to Remove
-              </button>
+              <p>Notes: {productList[`${key}`].message}</p>
+              <div className="databaseButtonContainer">
+                <AddNotes restaurantName={productList[`${key}`].name} cityName={UserCitySelected} restImage={productList[`${key}`].image}/>
+                <button
+                  value={`${key}`}
+                  onClick={(event) => {
+                    setFire(`${event.target.value}`);
+                    handleRemoveTrip();
+                  }}
+                >
+                  Remove Restaurant
+                </button>
+              </div>
             </li>
           ))}
         </ul>
@@ -84,7 +86,8 @@ const RealtimeDb = (props) => {
 
         <div className={`prompt${prompt ? " opened" : " closed"}`}>
           <p>Are you sure you want to remove this restaurant?</p>
-          <button
+          <div className="promptButtonContainer">
+             <button
             onClick={() => {
               handleRemoveRestaurant();
             }}
@@ -92,6 +95,7 @@ const RealtimeDb = (props) => {
             Yes, remove
           </button>
           <button onClick={() => setPrompt(false)}>No, go back</button>
+          </div>
         </div>
       </div>
     </>
