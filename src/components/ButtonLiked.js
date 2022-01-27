@@ -17,7 +17,7 @@ const ButtonLiked = (props) => {
     }
     return (
         <>
-            <button onClick={writeUserData}>Add to my trip</button>
+            <button onClick={writeUserData} className="ButtonLiked">Add to my trip</button>
         </>
     )
 }

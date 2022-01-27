@@ -32,3 +32,24 @@
   width: 100%;
   justify-content: center;
 }
+.RestaurantItemIMGContainer {
+  position: relative;
+  width: 400px;
+  height: 400px;
+}
+.RestaurantItemIMG {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.ButtonLiked {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+/* .RestaurantRating {
+  color: 
+} */

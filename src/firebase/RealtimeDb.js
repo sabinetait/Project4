@@ -2,13 +2,12 @@ import { useEffect, useState } from 'react';
 import firebase from './Firebase';
 import { getDatabase, onValue, ref, remove} from 'firebase/database';
 import './RealtimeDb.css'; 
-import AddNotes from './AddNotes.js';
+import AddNotes from '../components/AddNotes.js';
 
 const RealtimeDb = (props) => {
   const database = getDatabase(firebase);
   const [productList, setProductList] = useState([]);
   const [fire, setFire] = useState("");
-//   const [userInput, setUserInput] = useState("");
   const [prompt, setPrompt] = useState(false);
 
   let UserCitySelected = props.buttonClicked;
@@ -67,10 +66,6 @@ const RealtimeDb = (props) => {
   const handleRemoveTrip = () => {
     setPrompt(true);
   };
-
-//   const handleInputChange = (event) => {
-//     setUserInput(event.target.value);
-//   };
 
   const handleRemoveRestaurant = () => {
     const databaseReference = ref(database, `City/${UserCitySelected}/Restaurant/${fire}`);

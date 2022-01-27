@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import LoadingAnimation from './LoadingAnimation.js';
-import ButtonLiked from './ButtonLiked.js';
+import LoadingAnimation from '../components/LoadingAnimation.js';
+import ButtonLiked from '../components/ButtonLiked.js';
 import './SearchPage.css'
+import RestaurantItems from "../components/RestaurantItems.js";
 
 function RestaurantSearchPage() {
   const [RestaurantItem, setRestaurantItem] = useState([]);
@@ -42,49 +43,7 @@ function RestaurantSearchPage() {
           </div>
           <div className="APIItemsContainer">
           <ul className='RestaurantItems'>
-            { RestaurantItem.map((restaurant) => {
-              return (
-                <li className='RestaurantItemOne' key={restaurant.id}>
-                  
-                  <h2>{restaurant.name}</h2>
-                  
-                  <div className='RestaurantItemIMGContainer'>
-                    <img className='RestaurantItemIMG' src={restaurant.image_url} alt={restaurant.name}/>
-                  </div>
-                  
-                  <div className="RestaurantLocationContainer">
-                    <h3 className="RestaurantLocationHeading">Location:</h3>
-                    { restaurant.location.display_address.map((location, index) => {
-                      return (
-                        <p key={index}>{location}</p>
-                      );
-                    }) }
-                  </div>
-                
-                  <div className="RestaurantRatingContainer">
-                    <h3>Restaurant Rating:</h3>
-                    <p>{restaurant.rating}</p>
-                  </div>
-                  
-                  <div className="RestaurantCuisineContainer">
-                    <h3>Cuisine:</h3>
-                    { restaurant.categories.map( (cuisine, index) => {
-                      return (
-                        <p key={index}>{cuisine.title}</p>
-                        );
-                      }) }
-                  </div>
-                  
-                  { restaurant.price ? 
-                    <div className="RestaurantPriceContainer">
-                      <h3>Restaurant Price Range:</h3>
-                      <p>{restaurant.price}</p>
-                    </div> : null }
-
-                  <ButtonLiked cityName={`${userInput}`} image={restaurant.image_url} restaurantName={restaurant.name} />
-                </li>
-              );
-            }) }
+            <RestaurantItems RestaurantItemsMap={RestaurantItem} userInput={userInput}/>
             </ul>
           </div>
         </>

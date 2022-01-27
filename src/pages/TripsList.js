@@ -1,7 +1,7 @@
-import RealtimeDb from './RealtimeDb';
+import RealtimeDb from '../firebase/RealtimeDb';
 import './TripList.css';
 import { useEffect, useState } from 'react';
-import firebase from './Firebase';
+import firebase from '../firebase/Firebase';
 import { getDatabase, onValue, ref } from 'firebase/database';
 
 const TripsList = () => {
