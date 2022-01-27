@@ -90,7 +90,7 @@ const [city, setCity] = useState("");
     if (prompt === false);
     else {
       return (
-        <div className="PromptMenuConfirmation">
+        <div className="promptMenuConfirmation">
           <p>Are you sure you want to remove this trip to {city}?</p>
           <button
             onClick={() => {
@@ -142,7 +142,7 @@ const [city, setCity] = useState("");
 
       return (
 
-        <p>No Results Returned Go Outside Loser</p>
+        <p>Nothing to see here, add some trips!</p>
       )
     }
 

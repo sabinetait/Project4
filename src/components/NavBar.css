@@ -14,6 +14,11 @@
   position: relative;
 }
 
+.title {
+  font-weight: 600;
+  font-family: 'Raleway', sans-serif;
+}
+
 .upperNav ul {
   list-style: none;
   display: flex;
@@ -28,7 +33,8 @@
   width: 200px;
   text-align: center;
   height: 100%;
-  padding: 10px;
+  display: flex;
+  align-items: center;
 }
 .upperNav ul a {
   font-size: var(--font-size--small);
@@ -46,7 +52,7 @@
 }
 
 .upperNav i:hover {
-  color: purple;
+  color:  purple;
 }
 
 .upperNav ul a:hover {

@@ -8,7 +8,7 @@ const NavBar = () => {
                 <ul>
                     <li> <Link to="/TripsList">My Trips</Link></li>
                 </ul>
-                <Link to="/"><i className="fas fa-cookie-bite"></i></Link>
+                <Link to="/"><i className="fas fa-cookie-bite"> <span className="title">Bite-Sized Traveling</span></i></Link>
             </div>
         </nav>
     );
