@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import LoadingAnimation from '../components/LoadingAnimation.js';
 import ButtonLiked from '../components/ButtonLiked.js';
 import './SearchPage.css'
-import RestaurantItems from "../components/RestaurantItems.js";
+import RestaurantItemsMap from "../components/RestaurantItemsMap.js";
 
 function RestaurantSearchPage() {
   const [RestaurantItem, setRestaurantItem] = useState([]);
@@ -43,7 +43,7 @@ function RestaurantSearchPage() {
           </div>
           <div className="APIItemsContainer">
           <ul className='RestaurantItems'>
-            <RestaurantItems RestaurantItemsMap={RestaurantItem} userInput={userInput}/>
+            <RestaurantItemsMap RestaurantItemsMap={RestaurantItem} userInput={userInput}/>
             </ul>
           </div>
         </>
@@ -83,10 +83,10 @@ function RestaurantSearchPage() {
   
   return (
     <div className="wrapper-SearchPage">
-      <h2>Search for your Next Adventure Spot to Make your Trip Great!</h2>
-      <form onSubmit={handleSubmit} className='SearchPageFormAPI'>
+      <h2>Where Would You Like to Go?</h2>
+      <form onSubmit={handleSubmit} className='searchPageFormApi'>
           <label htmlFor="newTrip" aria-label="Add new trip"></label>
-          <input placeholder="Add a new trip" type="text" id="newTrip" value={userInput} onChange={handleInputChange} />
+          <input placeholder="Search for a city" type="text" id="newTrip" value={userInput} onChange={handleInputChange} />
         <button onClick={YELPAPICall}>Search</button>
       </form >
       {RenderAPICall()}

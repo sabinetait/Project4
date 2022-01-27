@@ -3,8 +3,10 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  background-color: rgb(5, 5, 49);
-  min-height: 100vh;
+  background-image: url(../../Assets/image2.jpg);
+  background-size:cover;
+  background-position: center;
+  min-height: calc(100vh - 110px);
   height: 100%;
   color: white;
 }
@@ -15,7 +17,6 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  background-color: rgb(5, 5, 49);
   width: 100%;
   justify-content: center;
 }
@@ -28,19 +29,20 @@
 .FirebaseTripUserSaved button {
   width: 325px;
   height: 120px;
-  background-color: #2c0133;
-  border: goldenrod solid 4px;
+  background-color: #283D38;
+  border: #283D38;
   border-radius: 25px;
   color: white;
   font-family: Raleway;
-  font-size: var(--font-size--medium);
+  font-size: 2rem;
   font-weight: 800;
 }
-.FirebaseTripUserSaved button:hover {
+.FirebaseTripUserSaved button:hover,
+.FirebaseTripUserSaved button:focus {
   cursor: pointer;
-  background-color: gold;
-  color: #2c0133;
-  border: darkgreen solid 4px;
+  background-color: white;
+  border: #283D38 solid 4px;
+  color: #283D38;
 }
 .savedTrips-Wrappper h2 {
   font-size: 48px;
