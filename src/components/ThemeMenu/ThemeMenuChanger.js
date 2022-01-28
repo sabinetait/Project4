@@ -37,19 +37,19 @@ const ThemeMenuChanger = (props) => {
     
         <div className={`themeMenuToggle${props.showbox ? " openTheme" : " closed"}`}>
             
-            <button onClick={Violet} style={{background: "#9400D3"}} >Violet Theme</button>
+            <button aria-label="Violet Theme" onClick={Violet} style={{background: "#9400D3"}} >Violet Theme</button>
           
-            <button onClick={Indigo} style={{ background: "#4B0082" }} >Indigo Theme</button>
+            <button aria-label=" Indigo Theme" onClick={Indigo} style={{ background: "#4B0082" }} >Indigo Theme</button>
               
-            <button onClick={Blue} style={{ background: "#0000FF" }} >Blue Theme</button>
+            <button aria-label="Blue Theme" onClick={Blue} style={{ background: "#0000FF" }} >Blue Theme</button>
               
-            <button onClick={Green} style={{ background: "darkgreen" }} >Green Theme</button>
+            <button aria-label=" Green Theme" onClick={Green} style={{ background: "darkgreen" }} >Green Theme</button>
               
-            <button onClick={Orange} style={{ background: "#FF7F00" }} >Orange Theme</button>
+            <button aria-label=" Orange Theme" onClick={Orange} style={{ background: "#FF7F00" }} >Orange Theme</button>
             
-            <button onClick={Red} style={{ background: "#8b0000" }} >Red Theme</button>
+            <button aria-label="Red Theme" onClick={Red} style={{ background: "#8b0000" }} >Red Theme</button>
              
-            <button onClick={Default} style={{ background: "#283d38" }} >Default Theme</button>
+            <button aria-label=" Default Theme" onClick={Default} style={{ background: "#283d38" }} >Default Theme</button>
         </div>
         
     )    
