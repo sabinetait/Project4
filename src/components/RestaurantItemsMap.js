@@ -1,13 +1,14 @@
 import ButtonLiked from './ButtonLiked.js'
 
+//Props that send back json data from yelp api.
 const RestaurantItemsMap = (props) => {
     const restItems = props.RestaurantItemsMap;
 
+    //Renders yelp api map data. 
     return (
         <>
             {restItems.map((restaurant) => {
               return (
-                //Uncapitalize everything for class name, switch to camelCase 
                 <li className='restaurantItemOne' key={restaurant.id}>
                   
                   <h3>{restaurant.name}</h3>
@@ -22,6 +23,7 @@ const RestaurantItemsMap = (props) => {
                     <img className='RestaurantItemIMG' src={restaurant.image_url} alt={restaurant.name}/>
                   </div>
                   
+                  {/* Renders restaurant address */}
                   <div className="restaurantDetailsContainer">
                     <div className="restaurantDetails">
                       <h4 className="restaurantLocationHeading">Location:</h4>
@@ -32,6 +34,7 @@ const RestaurantItemsMap = (props) => {
                       }) }
                     </div>
                     
+                    {/* Renders restaurant cuisine type. */}
                     <div className="restaurantDetails">
                       <h4>Cuisine:</h4>
                       { restaurant.categories.map( (cuisine, index) => {

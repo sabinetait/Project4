@@ -10,3 +10,9 @@ footer {
 .credits a {
   color: white;
 }
+
+@media (max-width: 800px) {
+  footer p {
+    text-align: center;
+  }
+}

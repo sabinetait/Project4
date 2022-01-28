@@ -3,6 +3,7 @@ import LoadingAnimation from '../components/LoadingAnimation.js';
 import './SearchPage.css'
 import RestaurantItemsMap from "../components/RestaurantItemsMap.js";
 
+//Funtion that contains yelp api call and renders info on the page. 
 function RestaurantSearchPage() {
   const [RestaurantItem, setRestaurantItem] = useState([]);
   const [loadingAnimation, setLoadingAnimation] = useState(false);
@@ -31,6 +32,7 @@ function RestaurantSearchPage() {
       .then(data => {
         setRestaurantItem(data.businesses);
       }).catch((err) => {
+        //Api error handling. 
         if (err.message === "Not Found") {
           alert("Something went wrong.");
         } else {
@@ -40,13 +42,14 @@ function RestaurantSearchPage() {
   }
     
   const RenderAPICall = () => {
-    
+    //Conditional rendering of api call.
     if (RestaurantItem === null || RestaurantItem === ' ' || RestaurantItem === undefined || RestaurantItem.length === 0);
     
     else {
     
       return (
         <>
+          {/* Loading animation based boolean setState */}
           <div className={`Loading${loadingAnimation ? " show" : " hide"}`}>
             <LoadingAnimation/>
           </div>
@@ -74,6 +77,7 @@ function RestaurantSearchPage() {
     setTimeout(endAnimation, 4000);
   };
   
+  //Conditional redndering of animation. 
   const renderLoadingAnimation = () => {
   
     if (LoadingAnimation === false); 
@@ -89,17 +93,19 @@ function RestaurantSearchPage() {
   }
 
   return (
-    <div className="wrapper-SearchPage">
-      <h2>Where Would You Like to Go?</h2>
-      <form onSubmit={handleSubmit} className='searchPageFormApi'>
+    <section className="restaurantSearchSection">
+      <div className="wrapper-SearchPage">
+        <h2>Where Would You Like to Go?</h2>
+        <form onSubmit={handleSubmit} className='searchPageFormApi'>
           <label htmlFor="newTrip" aria-label="Add new trip"></label>
           <input placeholder="Search for a city" type="text" id="newTrip" value={userInput} onChange={handleInputChange} />
-        <button onClick={YELPAPICall}>Search</button>
-      </form >
-
-      {RenderAPICall()}
-      {renderLoadingAnimation()}
-    </div>
+          <button onClick={YELPAPICall}>Search</button>
+        </form >
+        {/* Conditional rendering functions call */}
+        {RenderAPICall()}
+        {renderLoadingAnimation()}
+      </div>
+    </section>
   );
 }
 

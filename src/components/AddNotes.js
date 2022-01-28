@@ -6,6 +6,7 @@ const AddNotes = (props) => {
     const [ userNote, setUserNote ] = useState("");
     const [ formOpen, setFormOpen ] = useState(false);
 
+    //Handles writing note onto firebase 
     const handleNoteSubmit = (event) => {
         event.preventDefault();
         const db = getDatabase();
@@ -23,6 +24,7 @@ const AddNotes = (props) => {
     return (
         <>
             <button className="noteButton" onClick={() => setFormOpen(true)}>Add a Note</button>
+            {/* Prompt note form open or close */}
             <div className={`formShowing${formOpen ? " opened" : " closed"}`}>
                 <form onSubmit={handleNoteSubmit}>
                     <div className="noteFormInputs">

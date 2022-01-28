@@ -4,25 +4,25 @@ import { useEffect, useState } from "react";
 import firebase from "../firebase/Firebase";
 import { getDatabase, onValue, ref, remove } from "firebase/database";
 
+//Function for my saved trips page. 
 const TripsList = () => {
   const database = getDatabase(firebase);
   const [productList, setProductList] = useState([]);
   const [databaseRender, setDatabaseRender] = useState(false);
   const [buttonClickedValueSetting, setbuttonClickedValueSetting] = useState("");
-const [city, setCity] = useState("");
-    const [videoMenu, setVideoMenu] = useState(false); 
+  const [city, setCity] = useState("");
+  const [videoMenu, setVideoMenu] = useState(false); 
   const [removeTripState, setRemoveTripState] = useState(false);
   const [prompt, setPrompt] = useState(false);
   const [errorFirebase, setErrorFirebase] = useState(false); 
 
-
-
+  //Click handler for saved restaurants for saved trips page. 
   const buttonClickedValue = (event) => {
     setbuttonClickedValueSetting(`${event.target.value}`);
-    console.log(buttonClickedValueSetting);
     setDatabaseRender(true);
   };
 
+  //Firebase call useEffect
   useEffect(() => {
     const dbRootAddress = ref(database, "Saved/");
 
@@ -40,11 +40,12 @@ const [city, setCity] = useState("");
     );
   }, [database]);
 
+  //Handles remove trip prompt open
   const handleRemoveTrip = () => {
     setPrompt(true);
-    console.log(city);
   };
 
+  //Handles confirmation for removing trip.
   const handleRemoveTripConfirmation = () => {
     const databaseReference = ref(database, `City/${city}/`);
     const dataSavedCityReference = ref(database, `Saved/${city}/`);
@@ -54,6 +55,7 @@ const [city, setCity] = useState("");
     setCity("");
   };
 
+  //Conditional render map for firebase on my saved trips page
   const renderMenu = () => {
     if (
       productList === null ||
@@ -81,11 +83,13 @@ const [city, setCity] = useState("");
             </button>
           ))}
               <button onClick={() => {rickMe();
-              }}>The Meaning of Life You Must Click This or Die</button>
+              }}>Extra Special Trip</button>
         </div>
       );
     }
   };
+
+  //Conditional renders prompt menu for trip removal
   const renderPromptMenu = () => {
     if (prompt === false);
     else {
@@ -104,6 +108,8 @@ const [city, setCity] = useState("");
       );
     }
   };
+
+  //Rick roll
   const rickMe = () =>{
  
     let video = document.getElementById('RickMe');
@@ -151,12 +157,13 @@ const [city, setCity] = useState("");
     
   }
 
-
+  //Conditional rendering my trips page, restaurant saved, and using firebase
   const renderDataBase = () => {
     if (databaseRender === false) {
       return (
-        <div className="savedTrips-Wrappper">
-          {renderFirebaseError()}
+        <section className="savedTripsSection">
+          <div className="savedTrips-Wrappper">
+            {renderFirebaseError()}
               <video  className={`RickMe${videoMenu ? " show" : " hide"
                   }`} id="RickMe" src="./Assets/video/RickMe.mp4"></video>
               <audio id="beep" src="./Assets/beep.mp3"/>
@@ -172,11 +179,12 @@ const [city, setCity] = useState("");
                 setRemoveTripState((removeTripState) => !removeTripState);
               }}
               className="removeTripButton"
-            >
+              >
               Remove Trip
-            </button>
+              </button>
+            </div>
           </div>
-        </div>
+        </section>
       );
     } else {
       return (
@@ -187,6 +195,7 @@ const [city, setCity] = useState("");
     }
   };
 
+  //Conditional render map for trip list buttons.
   const renderMap = () => {
     if (
       productList === null ||
