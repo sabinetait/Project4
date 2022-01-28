@@ -21,18 +21,18 @@ const AddNotes = (props) => {
     }
     
     return (
-        <div>
+        <>
             <button className="noteButton" onClick={() => setFormOpen(true)}>Add a Note</button>
             <div className={`formShowing${formOpen ? " opened" : " closed"}`}>
                 <form onSubmit={handleNoteSubmit}>
                     <div className="noteFormInputs">
-                        <label aria-label="Add a note here" htmlFor="restaurantNote"></label>
+                        <label aria-label="Add a note here" htmlFor="restaurantNote">Add your note here</label>
                         <input onChange={handleInputChange} value={userNote} name="restaurantNote" id="restaurantNote" size="50"></input>
                         <button type="submit">Done</button>
                     </div>
                 </form>
             </div>
-        </div>
+        </>
     )
 }
 

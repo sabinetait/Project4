@@ -66,7 +66,7 @@
 }
 
 .restaurantItemOne {
-  margin: 20px 50px;
+  margin: 0 auto;
   width: 375px;
 }
 
@@ -92,6 +92,11 @@
   width: 100%;
   justify-content: center;
 }
+
+.APIItemsContainer ul {
+  padding: 0;
+}
+
 .restaurantItemImgContainer {
   position: relative;
   width: 100%;
@@ -131,4 +136,14 @@
 .ButtonLiked i:hover,
 .ButtonLiked i:focus {
   color: gold;
+}
+
+@media (max-width: 900px) {
+  .wrapper-SearchPage h2 {
+    text-align: center;
+  }
+
+  .APIItemsContainer h3 {
+    text-align: center;
+  }
 }

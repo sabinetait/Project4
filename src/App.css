@@ -392,3 +392,27 @@ html {
   --font-size--medium: 30px;
   --font-size--large: 34px;
 }
+
+@media (max-width: 900px) {
+  .opened {
+   top: 20%;
+   left: 25%;
+  }
+}
+
+@media (max-width: 600px) {
+  .opened {
+    left: 16%;
+    background-color: #000;
+  }
+}
+
+@media (max-width: 500px) {
+  .opened {
+    left: 0;
+    right: 0;
+    width: 100%;
+  }
+}
+
+

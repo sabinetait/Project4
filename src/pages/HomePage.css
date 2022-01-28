@@ -53,3 +53,37 @@ h1 {
   display: flex;
   justify-content: space-evenly;
 }
+
+/* MEDIA QUERIES */
+@media (max-width: 900px ) {
+  h1 {
+    font-size: 3rem;
+  }
+
+  .HomePageButtonsContainer {
+    flex-direction: column;
+  }
+
+  .HomePageContainer button {
+    width: 180px;
+    height: 80px;
+    font-size: 24px;
+    margin: 10px 0;
+  }
+
+  .upperNav ul {
+  margin: 0;
+  padding-right: 1%;
+  width: clamp(24rem, 1rem + 102.2222vw, 58.5rem);
+  }
+
+  .upperNav ul li {
+  width: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .title {
+    display: none;
+  }
+}
