@@ -30,7 +30,7 @@ const AddNotes = (props) => {
                     <div className="noteFormInputs">
                         <label aria-label="Add a note here" htmlFor="restaurantNote">Add your note here</label>
                         <input onChange={handleInputChange} value={userNote} name="restaurantNote" id="restaurantNote" size="50"></input>
-                        <button type="submit">Done</button>
+                        <button type="submit" >Done</button>
                     </div>
                 </form>
             </div>
