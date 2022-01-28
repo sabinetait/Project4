@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
 import firebase from './Firebase';
 import { getDatabase, onValue, ref, remove} from 'firebase/database';
-import './RealtimeDb.css'; 
 import AddNotes from '../components/AddNotes.js';
 
 //Function for firebase one city node on trips list route. 
 const RealtimeDb = (props) => {
   const database = getDatabase(firebase);
-  const [productList, setProductList] = useState([]);
+  const [restaurantList, setRestaurantList] = useState([]);
   const [singleRestaurant, setSingleRestaurant] = useState("");
   const [prompt, setPrompt] = useState(false);
 
@@ -21,9 +20,9 @@ const RealtimeDb = (props) => {
         dbRootAddress,
         (response) => {
           if (response.val() === null) {
-            setProductList([]);
+            setRestaurantList([]);
           } else {
-            setProductList(response.val());
+            setRestaurantList(response.val());
           }
         },
         []
@@ -33,25 +32,25 @@ const RealtimeDb = (props) => {
   //Conditional render map for firebase city node restaurants
   const renderMap = () => {
     if (
-      productList === null ||
-      productList === undefined ||
-      productList === "" ||
-      productList.length === 0
+      restaurantList === null ||
+      restaurantList === undefined ||
+      restaurantList === "" ||
+      restaurantList.length === 0
     );
     else {
       return (
-        <ul className="DataBaseResultsList">
+        <ul className="dataBaseResultsList">
           {/* Maps over node and renders one city object with children */}
-          {Object.keys(productList).map((key, index) => (
+          {Object.keys(restaurantList).map((key, index) => (
             <li id={`${key}`} key={index}>
-              <h3>{productList[`${key}`].name}</h3>
+              <h3>{restaurantList[`${key}`].name}</h3>
               <img
-                src={productList[`${key}`].image}
-                alt={productList[`${key}`].name}
+                src={restaurantList[`${key}`].image}
+                alt={restaurantList[`${key}`].name}
               />
-              <p>Notes: {productList[`${key}`].message}</p>
+              <p>Notes: {restaurantList[`${key}`].message}</p>
               <div className="databaseButtonContainer">
-                <AddNotes restaurantName={productList[`${key}`].name} cityName={UserCitySelected} restImage={productList[`${key}`].image}/>
+                <AddNotes restaurantName={restaurantList[`${key}`].name} cityName={UserCitySelected} restImage={restaurantList[`${key}`].image}/>
                 <button
                   value={`${key}`}
                   onClick={(event) => {

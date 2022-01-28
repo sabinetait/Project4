@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
 
 /* Setup Snippet */
 html {
@@ -8,7 +8,7 @@ html {
 }
 body {
   margin: 0;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
 }
 article,
 aside,
@@ -256,10 +256,11 @@ a {
 .opened {
   display: flex;
   flex-direction: column;
-  position: absolute;
+  position: fixed;
   top: 35%;
   left: 35%;
-  width: 400px;
+  width: auto;
+  padding: 3%;
   height: 400px;
   background-color: rgba(0, 0, 0, 0.8);
   justify-content: space-evenly;
@@ -391,12 +392,31 @@ html {
   --font-size--small: 24px;
   --font-size--medium: 30px;
   --font-size--large: 34px;
+  --ThemeColour: #283d38;
+}
+html[data-theme="Violet"] {
+  --ThemeColour: #9400d3;
+}
+html[data-theme="Indigo"] {
+  --ThemeColour: #4b0082;
+}
+html[data-theme="Blue"] {
+  --ThemeColour: #0000ff;
+}
+html[data-theme="Green"] {
+  --ThemeColour: darkgreen;
+}
+html[data-theme="Red"] {
+  --ThemeColour: Red;
+}
+html[data-theme="Orange"] {
+  --ThemeColour: #ff7f00;
 }
 
 @media (max-width: 900px) {
   .opened {
-   top: 20%;
-   left: 25%;
+    top: 20%;
+    left: 25%;
   }
 }
 
@@ -414,5 +434,705 @@ html {
     width: 100%;
   }
 }
+/* TripList CSS START */
 
+.savedTrips-Wrappper {
+  padding: 5%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url("../public/Assets/images/image2.webp");
+  background-size: cover;
+  background-position: center;
+  min-height: calc(100vh - 110px);
+  height: 100%;
+  color: white;
+  position: relative;
+}
 
+.FirebaseTripUserSaved {
+  list-style: none;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+}
+
+.FirebaseTripUserSaved li {
+  margin: 10px;
+}
+
+.FirebaseTripUserSaved button {
+  width: 325px;
+  height: 120px;
+  background-color: var(--ThemeColour);
+  border: var(--ThemeColour);
+  border-radius: 25px;
+  color: white;
+  font-family: Raleway;
+  font-size: 2rem;
+  font-weight: 800;
+  text-transform: capitalize;
+}
+.FirebaseTripUserSaved button:hover,
+.FirebaseTripUserSaved button:focus {
+  cursor: pointer;
+  background-color: white;
+  border: var(--ThemeColour) solid 4px;
+  color: var(--ThemeColour);
+}
+.savedTrips-Wrappper h2 {
+  font-size: 48px;
+}
+.TitleContainer {
+  width: 100%;
+  text-align: center;
+}
+.removeTrip {
+  position: absolute;
+  left: 50px;
+  bottom: 60px;
+}
+
+.removeTrip button {
+  cursor: pointer;
+  background-color: rgb(255, 91, 79);
+  padding: 15px;
+  border: rgb(255, 91, 79) solid 1px;
+  border-radius: 25px;
+  color: white;
+  font-family: Raleway;
+  font-size: 1.7rem;
+  font-weight: 800;
+}
+
+.removeTrip button:hover,
+.removeTrip button:focus {
+  background-color: rgba(0, 0, 0, 0.65);
+  padding: 15px;
+  border: rgb(255, 91, 79) solid 1px;
+  border-radius: 25px;
+  color: rgb(255, 91, 79);
+}
+
+.openRemovedTripMenu {
+  right: 0;
+  min-height: 100%;
+  display: flex;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 300px;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.65);
+  z-index: 10;
+}
+
+.openRemovedTripMenu button {
+  text-transform: capitalize;
+  width: 100%;
+  height: 75px;
+  background-color: var(--ThemeColour);
+  color: white;
+  border: white solid 1px;
+  font-size: 1.3rem;
+  padding: 10px;
+}
+.openRemovedTripMenu button:hover {
+  border: solid 1px var(--ThemeColour);
+  background-color: white;
+  color: var(--ThemeColour);
+}
+
+.closedRemovedTripMenu {
+  display: none;
+}
+
+.promptMenuConfirmation {
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 40%;
+  padding: 90px 10px;
+  display: flex;
+  border-radius: 25px;
+  position: absolute;
+  z-index: 40;
+  flex-direction: column;
+  align-items: center;
+}
+
+.promptMenuConfirmation p {
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.promptMenuConfirmation button {
+  font-size: 1.4rem;
+  width: 200px;
+  height: 60px;
+  margin: 7px;
+}
+
+.savedTrips-Wrappper p {
+  font-size: 1.6rem;
+  top: 40%;
+}
+
+.RickMe {
+  position: absolute;
+  left: 5%;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+}
+.addNotesTextarea {
+  height: 200px;
+  width: 600px;
+  margin: 15px 0;
+}
+
+@media (max-width: 900px) {
+  .removeTrip button {
+    padding: 15px;
+    font-size: 1.4rem;
+  }
+
+  .addNotesTextarea {
+    height: 100px;
+    width: 100%;
+  }
+
+  .FirebaseTripUserSaved {
+    padding: 0;
+  }
+
+  .FirebaseTripUserSaved button {
+    width: 200px;
+    height: 80px;
+    font-size: 1.7rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .removeTrip {
+    position: static;
+  }
+}
+
+@media (max-width: 700px) {
+  .openRemovedTripMenu {
+    width: 100vw;
+  }
+
+  .promptMenuConfirmation {
+    background-color: #000;
+    width: 70%;
+  }
+
+  .promptMenuConfirmationButtonContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+}
+/* TRIP LIST CSS END */
+
+/* Search PAGE CSS START */
+
+.searchPageFormApi {
+  width: 100%;
+  background-color: rgb(205, 207, 218);
+  padding: 50px;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+}
+
+.searchPageFormApi button {
+  cursor: pointer;
+  background-color: var(--ThemeColour);
+  border: 1px solid var(--ThemeColour);
+  border-radius: 10px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  color: white;
+  font-size: 1.4rem;
+  height: 50px;
+  width: 100px;
+}
+
+.searchPageFormApi button:hover,
+.searchPageFormApi button:focus {
+  background-color: white;
+  border: 1px solid var(--ThemeColour);
+  color: var(--ThemeColour);
+}
+
+.searchPageFormApi input {
+  height: 50px;
+  width: 250px;
+  font-size: 1.2rem;
+  padding-left: 1.5%;
+  border: none;
+  border-left: 1px solid var(--ThemeColour);
+  border-top: 1px solid var(--ThemeColour);
+  border-bottom: 1px solid var(--ThemeColour);
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.wrapper-SearchPage {
+  background-color: var(--ThemeColour);
+  color: white;
+  padding: 5%;
+  min-height: calc(100vh - 110px);
+  height: 100%;
+  position: relative;
+}
+
+.wrapper-SearchPage h2 {
+  font-size: 2.5rem;
+}
+
+.overLayAnimation {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--ThemeColour);
+  /* opacity: 0.3; */
+  padding-left: 48%;
+  position: absolute;
+  top: 5%;
+  left: 0;
+  z-index: 30;
+}
+
+.restaurantItemOne {
+  margin: 0 auto;
+  width: 375px;
+}
+
+.ratingAndPrice {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ratingAndPrice h4 {
+  margin: 0 0 8px 0;
+}
+
+.restaurantItems {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+.APIItemsContainer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.APIItemsContainer ul {
+  padding: 0;
+}
+
+.restaurantItemImgContainer {
+  position: relative;
+  width: 100%;
+  height: 300px;
+}
+.restaurantItemImg {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.restaurantDetailsContainer {
+  display: flex;
+  justify-content: center;
+  background-color: white;
+}
+
+.restaurantDetails {
+  width: 50%;
+  padding: 3%;
+  color: var(--ThemeColour);
+  text-align: left;
+}
+
+.ButtonLiked {
+  position: absolute;
+  top: 0;
+  left: 3px;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.ButtonLiked i {
+  font-size: 3rem;
+}
+
+.ButtonLiked i:hover,
+.ButtonLiked i:focus {
+  color: gold;
+}
+.no {
+  color: gold;
+}
+.yes {
+  color: white;
+}
+@media (max-width: 900px) {
+  .wrapper-SearchPage h2 {
+    text-align: center;
+  }
+
+  .APIItemsContainer h3 {
+    text-align: center;
+  }
+}
+/* Search PAGE END */
+/* HOMEPAGE CSS START */
+
+.wrapper-HomePage {
+  width: 100%;
+  height: calc(100vh - 110px);
+  padding: 5%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)),
+    url("../public/Assets/images/image1.webp");
+  background-size: cover;
+  color: white;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.HomePageContainer {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  justify-content: center;
+  text-align: center;
+}
+
+h1 {
+  font-size: clamp(3rem, 1.4423rem + 6.9231vw, 5rem);
+  text-align: center;
+  background-size: cover;
+  color: white;
+  -moz-background-clip: text;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.HomePageContainer button {
+  width: 250px;
+  height: 90px;
+  background-color: var(--ThemeColour);
+  border: white;
+  border-radius: 25px;
+  color: white;
+  font-family: "Raleway", sans-serif;
+  font-size: var(--font-size--medium);
+  font-weight: 800;
+}
+
+.HomePageContainer button:hover,
+.HomePageContainer button:focus {
+  cursor: pointer;
+  background-color: white;
+  color: var(--ThemeColour);
+  border: var(--ThemeColour) solid 4px;
+}
+.HomePageButtonsContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+/* MEDIA QUERIES */
+@media (max-width: 900px) {
+  h1 {
+    font-size: 3rem;
+  }
+
+  .HomePageButtonsContainer {
+    flex-direction: column;
+  }
+
+  .HomePageContainer button {
+    width: 180px;
+    height: 80px;
+    font-size: 24px;
+    margin: 10px 0;
+  }
+
+  .upperNav ul {
+    margin: 0;
+    padding-right: 1%;
+    width: clamp(24rem, 1rem + 102.2222vw, 58.5rem);
+  }
+
+  .upperNav ul li {
+    width: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .title {
+    display: none;
+  }
+}
+/* HOMEPAGE CSS ENDS */
+/*RealTIME DB CSS STARTS */
+
+.dataBaseWrapper {
+  padding: 5%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--ThemeColour);
+  color: white;
+  min-height: 100vh;
+  height: 100%;
+  position: relative;
+}
+.titleContainer {
+  width: 100%;
+  font-size: var(--font-size--large);
+  text-align: center;
+}
+.dataBaseResultsList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  list-style: none;
+  justify-content: center;
+  padding: 0;
+}
+
+.dataBaseResultsList h3 {
+  font-size: 1.8rem;
+  margin-top: 0;
+}
+
+.dataBaseResultsList li {
+  width: 400px;
+  height: 100%;
+  padding: 10px;
+  margin: 50px;
+  border: solid white 4px;
+  border-radius: 25px;
+}
+.dataBaseResultsList li img {
+  width: 100%;
+  height: 300px;
+}
+
+.dataBaseResultsList p {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 1.2rem;
+}
+
+.databaseButtonContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.databaseButtonContainer button {
+  background: white;
+  border: none;
+  padding: 10px;
+  color: var(--ThemeColour);
+  border-radius: 10px;
+  border: solid white 1px;
+  font-size: 1.4rem;
+}
+
+.databaseButtonContainer button:hover,
+.databaseButtonContainer button:focus {
+  background: var(--ThemeColour);
+  padding: 10px;
+  color: white;
+  border-radius: 10px;
+}
+
+.promptButtonContainer {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.noteFormInputs {
+  display: flex;
+  flex-direction: column;
+}
+
+.noteFormInputs input {
+  margin: 10px 0;
+}
+
+@media (max-width: 800px) {
+  .dataBaseResultsList h3 {
+    text-align: center;
+  }
+}
+
+@media (max-width: 550px) {
+  .dataBaseWrapper h2 {
+    margin-bottom: 0;
+  }
+
+  .dataBaseResultsList li {
+    margin: 3%;
+  }
+
+  .dataBaseWrapper {
+    padding: 1%;
+  }
+
+  .databaseButtonContainer {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .databaseButtonContainer button {
+    width: 100%;
+    margin: 1%;
+  }
+}
+/* REALTIME DB ENDS */
+/* Navbar component */
+.upperNav {
+  width: 100%;
+  height: 60px;
+  padding: 0;
+  background-color: white;
+}
+
+.wrapper-Nav {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  font-weight: 600;
+  font-family: "Raleway", sans-serif;
+}
+
+.upperNav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 0;
+  padding: 0 5%;
+  width: clamp(24rem, 1rem + 102.2222vw, 58.5rem);
+}
+.upperNav ul li {
+  width: 200px;
+  text-align: center;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.upperNav ul a {
+  font-size: var(--font-size--small);
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--ThemeColour);
+}
+
+.upperNav .cookieI {
+  font-size: 38px;
+  position: absolute;
+  left: 50px;
+  top: 10px;
+  color: var(--ThemeColour);
+}
+
+.upperNav .cookieI:hover {
+  color: purple;
+}
+
+.upperNav ul a:hover {
+  color: purple;
+}
+.themeClick {
+  font-size: 30px;
+  border-radius: 90%;
+  border: none;
+  transition: ease-in-out 0.5s;
+  border: solid black 3px;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  margin-right: 50px;
+  background-color: var(--ThemeColour);
+}
+.themeClick i {
+  color: white;
+}
+.themeClick:hover {
+  color: var(--ThemeColour);
+  background-color: black;
+  border: solid gold 3px;
+  cursor: pointer;
+}
+.rotating {
+  transform: rotate(360deg);
+}
+.themeMenuToggle {
+  position: fixed;
+  top: 60px;
+  right: 0;
+  width: 500px;
+  bottom: 50px;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.themeMenuToggle button {
+  width: 100%;
+  height: 80px;
+  cursor: pointer;
+  border: solid black 4px;
+  color: whitesmoke;
+  font-size: var(--font-size--small);
+}
+.themeMenuToggle button:hover {
+  border: solid white 5px;
+}
+/* NAVBAR CSS ENDS */
+/* Footer CSS STARTS */
+
+footer {
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--ThemeColour);
+  color: white;
+}
+
+.credits a {
+  color: white;
+}
+
+@media (max-width: 800px) {
+  footer p {
+    text-align: center;
+  }
+}
+/* FOOTER CSS ENDS */

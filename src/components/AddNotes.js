@@ -28,8 +28,8 @@ const AddNotes = (props) => {
             <div className={`formShowing${formOpen ? " opened" : " closed"}`}>
                 <form onSubmit={handleNoteSubmit}>
                     <div className="noteFormInputs">
-                        <label aria-label="Add a note here" htmlFor="restaurantNote">Add your note here</label>
-                        <input onChange={handleInputChange} value={userNote} name="restaurantNote" id="restaurantNote" size="50"></input>
+                        <label aria-label={`Add a note here for ${props.restaurantName}`} htmlFor="restaurantNote">Add your note here for {props.restaurantName}</label>
+                        <textarea className="addNotesTextarea" onChange={handleInputChange} value={userNote} name="restaurantNote" id="restaurantNote"></textarea>
                         <button type="submit" >Done</button>
                     </div>
                 </form>

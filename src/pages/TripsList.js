@@ -1,5 +1,4 @@
 import RealtimeDb from "../firebase/RealtimeDb";
-import "./TripList.css";
 import { useEffect, useState } from "react";
 import firebase from "../firebase/Firebase";
 import { getDatabase, onValue, ref, remove } from "firebase/database";
@@ -83,7 +82,8 @@ const TripsList = () => {
             </button>
           ))}
               <button onClick={() => {rickMe();
-              }}>Extra Special Trip</button>
+          }}>Extra Special Trip</button>
+            <button className="removeTripButtonInMenu" onClick={() => setRemoveTripState(false)}>Close Menu</button>
         </div>
       );
     }
@@ -96,6 +96,8 @@ const TripsList = () => {
       return (
         <div className="promptMenuConfirmation">
           <p>Are you sure you want to remove this trip to {city}?</p>
+          
+          <div className="promptMenuConfirmationButtonContainer">
           <button
             onClick={() => {
               handleRemoveTripConfirmation();
@@ -104,6 +106,7 @@ const TripsList = () => {
             Yes, remove
           </button>
           <button onClick={() => setPrompt(false)}>No, go back</button>
+          </div>
         </div>
       );
     }

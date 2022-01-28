@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import LoadingAnimation from '../components/LoadingAnimation.js';
-import './SearchPage.css'
 import RestaurantItemsMap from "../components/RestaurantItemsMap.js";
 
 //Funtion that contains yelp api call and renders info on the page. 
@@ -8,7 +7,6 @@ function RestaurantSearchPage() {
   const [RestaurantItem, setRestaurantItem] = useState([]);
   const [loadingAnimation, setLoadingAnimation] = useState(false);
   const [userInput, setUserInput] = useState('');
-  
   const YELPAPICall = () => {
     
       const proxiedUrl = 'https://api.yelp.com/v3/businesses/search';
@@ -63,18 +61,26 @@ function RestaurantSearchPage() {
     }
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-  };
-  
-  const handleInputChange = (event) => {
-    event.preventDefault();
-    setUserInput(event.target.value);
+  const apiCallYelpOnClicked = (event) => {
+    event.preventDefault()
+    
     const endAnimation = () => {
       setLoadingAnimation(false);
     };
     setLoadingAnimation(true);
     setTimeout(endAnimation, 4000);
+    YELPAPICall(); 
+   
+  };
+  const handleSubmit = (e) => {
+
+    e.preventDefault()
+  }
+
+
+  const handleInputChange = (event) => {
+    event.preventDefault();
+    setUserInput(event.target.value);
   };
   
   //Conditional redndering of animation. 
@@ -99,7 +105,8 @@ function RestaurantSearchPage() {
         <form onSubmit={handleSubmit} className='searchPageFormApi'>
           <label htmlFor="newTrip" aria-label="Add new trip"></label>
           <input placeholder="Search for a city" type="text" id="newTrip" value={userInput} onChange={handleInputChange} />
-          <button onClick={YELPAPICall}>Search</button>
+          <label htmlFor="newPrice" aria-label="Search by Yelp Price Rating"></label>
+          <button onClick={apiCallYelpOnClicked}>Search</button>
         </form >
         {/* Conditional rendering functions call */}
         {RenderAPICall()}
