@@ -4,32 +4,19 @@ import { getDatabase, onValue, ref, remove} from 'firebase/database';
 import './RealtimeDb.css'; 
 import AddNotes from '../components/AddNotes.js';
 
+//Function for firebase one city node on trips list route. 
 const RealtimeDb = (props) => {
   const database = getDatabase(firebase);
   const [productList, setProductList] = useState([]);
-  const [fire, setFire] = useState("");
+  const [singleRestaurant, setSingleRestaurant] = useState("");
   const [prompt, setPrompt] = useState(false);
 
   let UserCitySelected = props.buttonClicked;
-  let dbRootAddress = null; 
-
-  const callRestaurantFirebase = () => {
-
-    dbRootAddress = ref(database, `City/${UserCitySelected}/Restaurant/`);
-    FirebaseCall(); 
-
-  }
-  const callMusesumFirebase = () => {
-
-    dbRootAddress = ref(database, `City/${UserCitySelected}/Museum/`);
-    FirebaseCall(); 
-    console.log(dbRootAddress);
-
-  }
-  const FirebaseCall = () => {
-   
-    useEffect(() => {
-
+  
+  //Firebase use effect ********************************************RYAN PLZ REMEMBER TO CHANGE PRODUCTLIST TO RESTAURANT LIST EVERYWHERE **************************************************
+  useEffect(() => {
+      
+    const dbRootAddress = ref(database, `City/${UserCitySelected}/Restaurant/`);
       onValue(
         dbRootAddress,
         (response) => {
@@ -41,12 +28,9 @@ const RealtimeDb = (props) => {
         },
         []
       );
-    }, []);
+    }, [UserCitySelected, database]);
   
-
-
-  }
-  
+  //Conditional render map for firebase city node restaurants
   const renderMap = () => {
     if (
       productList === null ||
@@ -57,6 +41,7 @@ const RealtimeDb = (props) => {
     else {
       return (
         <ul className="DataBaseResultsList">
+          {/* Maps over node and renders one city object with children */}
           {Object.keys(productList).map((key, index) => (
             <li id={`${key}`} key={index}>
               <h3>{productList[`${key}`].name}</h3>
@@ -64,17 +49,19 @@ const RealtimeDb = (props) => {
                 src={productList[`${key}`].image}
                 alt={productList[`${key}`].name}
               />
-              <p>{productList[`${key}`].message}</p>
-              <AddNotes restaurantName={productList[`${key}`].name} cityName={UserCitySelected} restImage={productList[`${key}`].image}/>
-              <button
-                value={`${key}`}
-                onClick={(event) => {
-                  setFire(`${event.target.value}`);
-                  handleRemoveTrip();
-                }}
-              >
-                Click to Remove
-              </button>
+              <p>Notes: {productList[`${key}`].message}</p>
+              <div className="databaseButtonContainer">
+                <AddNotes restaurantName={productList[`${key}`].name} cityName={UserCitySelected} restImage={productList[`${key}`].image}/>
+                <button
+                  value={`${key}`}
+                  onClick={(event) => {
+                    setSingleRestaurant(`${event.target.value}`);
+                    handleRemoveTrip();
+                  }}
+                >
+                  Remove Restaurant
+                </button>
+              </div>
             </li>
           ))}
         </ul>
@@ -86,25 +73,26 @@ const RealtimeDb = (props) => {
     setPrompt(true);
   };
 
+  //Handles remove restaurant 
   const handleRemoveRestaurant = () => {
-    const databaseReference = ref(database, `City/${UserCitySelected}/Restaurant/${fire}`);
+    const databaseReference = ref(database, `City/${UserCitySelected}/Restaurant/${singleRestaurant}`);
     remove(databaseReference);
     setPrompt(false);
   };
 
   return (
-    <>
-        <div className="dataBaseWrapper">
+    <section className='firebaseNodeOneSection'>
+      <div className="dataBaseWrapper">
         <div className='titleContainer'>
-          {callMusesumFirebase()}
-          {callRestaurantFirebase()}
               <h2>My Stops in {UserCitySelected}!</h2>
             </div>
         {renderMap()}
 
+        {/* Prompt to remove restaurant */}
         <div className={`prompt${prompt ? " opened" : " closed"}`}>
           <p>Are you sure you want to remove this restaurant?</p>
-          <button
+          <div className="promptButtonContainer">
+             <button
             onClick={() => {
               handleRemoveRestaurant();
             }}
@@ -112,20 +100,10 @@ const RealtimeDb = (props) => {
             Yes, remove
           </button>
           <button onClick={() => setPrompt(false)}>No, go back</button>
+          </div>
         </div>
       </div>
-    </>
+    </section>
   );
 };
 export default RealtimeDb;
-
-
-//Important DO NOT DELETE IN ANY CIRCUMSTANCES NECESSARY FOR A COMPONENT THAT MAY BE NEEDED TO BE CREATED .........................
-
-
-//{Object.keys(productList).map((key) => (
-  //  <>
-    // <p key={key}>{productList[`${key}`]}</p>
-       // <button onClick={() => { handleRemoveTrip(); setFire(key) }}>Click to Remove</button>
-    // </>
-//))}

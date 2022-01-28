@@ -7,26 +7,22 @@ const ButtonLiked = (props) => {
         event.preventDefault();
         const db = getDatabase();
         
-        set(ref(db, `City/${props.cityName}/${props.userInputTerm}/${props.restaurantName}`), {
+        //Sets city on firebase based on user click.
+        set(ref(db, `City/${props.cityName}/Restaurant/${props.restaurantName}`), {
             name: props.restaurantName, image: props.image, message: ""
         });
-        
+
+        //Sets saved cities on saved node. 
         set(ref(db, `Saved/${props.cityName}/`), {
             name: `${props.cityName}`,
         });
-        set(ref(db, `Activity/${props.userInputTerm}/`), {
-            name: `${props.userInputTerm}`,
-        });
+      
     }
     return (
 
-        <>
-
-            <div onClick={writeUserData} className="ButtonLiked">
-                <i className="far fa-plus-square"></i>
-            </div>
-            
-        </>
+        <div onClick={writeUserData} className="ButtonLiked">
+            <i className="far fa-plus-square"></i>
+        </div>
     )
 }
 

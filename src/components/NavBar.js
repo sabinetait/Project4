@@ -6,9 +6,9 @@ const NavBar = () => {
         <nav className="upperNav">
             <div className="wrapper-Nav">
                 <ul>
-                    <li> <Link to="/TripsList">My Trips</Link></li>
+                    <li><Link to="/TripsList">My Trips</Link></li>
                 </ul>
-                <Link to="/"><i className="fas fa-cookie-bite"></i></Link>
+                <Link to="/" aria-label="Go to home page"><i className="fas fa-cookie-bite"> <span className="title">Bite-Sized Traveling</span></i></Link>
             </div>
         </nav>
     );

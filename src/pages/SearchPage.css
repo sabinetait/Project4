@@ -46,6 +46,7 @@
   padding: 5%;
   min-height: calc(100vh - 110px);
   height: 100%;
+  position: relative;
 }
 
 .wrapper-SearchPage h2 {
@@ -53,15 +54,31 @@
 }
 
 .overLayAnimation {
-  width: 100%;
-  background-color: lightgrey;
-  opacity: 0.3;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
+  background-color: #283d38;
+  /* opacity: 0.3; */
+  padding-left: 48%;
+  position: absolute;
+  top: 5%;
+  left: 0;
+  z-index: 30;
 }
+
 .restaurantItemOne {
-  margin: 20px 50px;
+  margin: 0 auto;
   width: 375px;
 }
+
+.ratingAndPrice {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ratingAndPrice h4 {
+  margin: 0 0 8px 0;
+}
+
 .restaurantItems {
   display: flex;
   flex-direction: row;
@@ -75,6 +92,11 @@
   width: 100%;
   justify-content: center;
 }
+
+.APIItemsContainer ul {
+  padding: 0;
+}
+
 .restaurantItemImgContainer {
   position: relative;
   width: 100%;
@@ -114,4 +136,14 @@
 .ButtonLiked i:hover,
 .ButtonLiked i:focus {
   color: gold;
+}
+
+@media (max-width: 900px) {
+  .wrapper-SearchPage h2 {
+    text-align: center;
+  }
+
+  .APIItemsContainer h3 {
+    text-align: center;
+  }
 }

@@ -1,3 +1,4 @@
+//Loading animation loop for api calls. 
 const LoadingAnimation = () => {
   
   return (

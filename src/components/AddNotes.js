@@ -6,6 +6,7 @@ const AddNotes = (props) => {
     const [ userNote, setUserNote ] = useState("");
     const [ formOpen, setFormOpen ] = useState(false);
 
+    //Handles writing note onto firebase 
     const handleNoteSubmit = (event) => {
         event.preventDefault();
         const db = getDatabase();
@@ -21,16 +22,19 @@ const AddNotes = (props) => {
     }
     
     return (
-        <div>
-            <button onClick={() => setFormOpen(true)}>Add a Note</button>
+        <>
+            <button className="noteButton" onClick={() => setFormOpen(true)}>Add a Note</button>
+            {/* Prompt note form open or close */}
             <div className={`formShowing${formOpen ? " opened" : " closed"}`}>
                 <form onSubmit={handleNoteSubmit}>
-                    <label aria-label="Add a note here" htmlFor="restaurantNote"></label>
-                    <input onChange={handleInputChange} value={userNote} name="restaurantNote" id="restaurantNote"></input>
-                    <button type="submit">Done</button>
+                    <div className="noteFormInputs">
+                        <label aria-label="Add a note here" htmlFor="restaurantNote">Add your note here</label>
+                        <input onChange={handleInputChange} value={userNote} name="restaurantNote" id="restaurantNote" size="50"></input>
+                        <button type="submit" >Done</button>
+                    </div>
                 </form>
             </div>
-        </div>
+        </>
     )
 }
 

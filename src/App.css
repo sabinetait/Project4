@@ -8,6 +8,7 @@ html {
 }
 body {
   margin: 0;
+  font-family: 'Raleway', sans-serif;
 }
 article,
 aside,
@@ -254,20 +255,28 @@ a {
 
 .opened {
   display: flex;
-  position: fixed;
-  top: 50vh;
-  left: 50vw;
+  flex-direction: column;
+  position: absolute;
+  top: 35%;
+  left: 35%;
   width: 400px;
   height: 400px;
-  background-color: rgb(2, 2, 65);
+  background-color: rgba(0, 0, 0, 0.8);
   justify-content: space-evenly;
   align-items: center;
+  border-radius: 25px;
   z-index: 1;
 }
 
+.opened p {
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 0 10px;
+}
+
 .opened button {
-  height: 60px;
-  width: 100px;
+  padding: 10px;
+  font-size: 1.3rem;
 }
 
 /* API LOADING ANIMATION */
@@ -282,7 +291,7 @@ a {
   position: absolute;
   width: 6px;
   height: 6px;
-  background: black;
+  background: white;
   border-radius: 50%;
   animation: lds-default 1.2s linear infinite;
 }
@@ -383,3 +392,27 @@ html {
   --font-size--medium: 30px;
   --font-size--large: 34px;
 }
+
+@media (max-width: 900px) {
+  .opened {
+   top: 20%;
+   left: 25%;
+  }
+}
+
+@media (max-width: 600px) {
+  .opened {
+    left: 16%;
+    background-color: #000;
+  }
+}
+
+@media (max-width: 500px) {
+  .opened {
+    left: 0;
+    right: 0;
+    width: 100%;
+  }
+}
+
+
