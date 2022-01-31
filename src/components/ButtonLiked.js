@@ -3,7 +3,8 @@ import { useState } from 'react';
 
 const ButtonLiked = (props) => {
 
-    const [ buttonLiked, setButtonLiked ] = useState(false); 
+    const [buttonLiked, setButtonLiked] = useState(false); 
+    
 
     const writeUserData = (event) => {
        
@@ -21,9 +22,6 @@ const ButtonLiked = (props) => {
         set(ref(db, `Saved/${props.cityName}/`), {
             name: `${props.cityName}`,
         });
-
-        
-
       
     }
     return (

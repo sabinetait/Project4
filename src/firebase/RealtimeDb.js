@@ -36,7 +36,11 @@ const RealtimeDb = (props) => {
       restaurantList === undefined ||
       restaurantList === "" ||
       restaurantList.length === 0
-    );
+    ) {
+      return (
+        <h2 className='TripsActivitiesNull'>Trips List is Empty, Add Some Activities!</h2>
+      )
+    }
     else {
       return (
         <ul className="dataBaseResultsList">
@@ -74,9 +78,24 @@ const RealtimeDb = (props) => {
 
   //Handles remove restaurant 
   const handleRemoveRestaurant = () => {
-    const databaseReference = ref(database, `City/${UserCitySelected}/Restaurant/${singleRestaurant}`);
-    remove(databaseReference);
-    setPrompt(false);
+
+    
+      const databaseReference = ref(database, `City/${UserCitySelected}/Restaurant/${singleRestaurant}`);
+      remove(databaseReference);
+      setPrompt(false);
+    
+    if (
+      restaurantList === null ||
+      restaurantList === undefined ||
+      restaurantList === "" ||
+      restaurantList.length === 0
+    ) { 
+
+      const databaseReference = ref(database, `City/${UserCitySelected}/`);
+      remove(databaseReference);
+      setPrompt(false);
+
+    }
   };
 
   return (
