@@ -13,8 +13,8 @@ const HomePage = () => {
             <Link to="/restaurant-search">
               <button className="HompageTripButton">Create a Trip</button>
             </Link>
-            <Link to="/TripsList"><button className="HomepageTripButton">
-              Modify a Trip</button>
+            <Link to="/TripsList">
+              <button className="HomepageTripButton">Modify a Trip</button>
             </Link>
           </div>
         </div>
