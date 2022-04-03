@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-const NavBar = (props) => {
+const NavBar = () => {
     return (
         <nav className="upperNav">
             <div className="wrapper-Nav">
@@ -9,12 +9,8 @@ const NavBar = (props) => {
                 </ul>
                 <Link to="/" aria-label="Go to home page">
                     <span className="cookieI"><i className="fas fa-cookie-bite">
-                    <span className="title">Bite-Sized Traveling</span></i></span></Link>
-                
-                <button aria-label="ThemeChanger" onClick={props.changeStateFunction} className={`themeClick${props.showbox ? " rotating" : " not"}`}>
-                    <i className={`${props.showbox ? "fas fa-bahai" : "fas fa-times"}`}></i>
-                </button>
-
+                    <span className="title">Bite-Sized Traveling</span></i></span>
+                </Link>
             </div>
         </nav>
     );

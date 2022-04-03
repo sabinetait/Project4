@@ -6,29 +6,11 @@ import HomePage from './pages/HomePage.js';
 import TripsList from './pages/TripsList.js';
 import RealtimeDb from './firebase/RealtimeDb';
 import Footer from './components/Footer';
-import ThemeMenuChanger from './components/ThemeMenu/ThemeMenuChanger';
-import { useState } from 'react';
 
 const App = () => {
-  
-  let [showbox, setShowBox] = useState(false);
-
-  const changeStateFunction = () => {
-
-    if (showbox === false) {
-      setShowBox(showbox = true);
-    }
-
-    else { 
-      setShowBox(showbox = false)
-    }
-
-  }
-
   return (
     <div className="App">
-      <NavBar showbox={showbox} changeStateFunction={changeStateFunction} />
-      <ThemeMenuChanger showbox={showbox}/>
+      <NavBar />
        <Routes>
           <Route path="/" element={<HomePage/>}/>
           <Route path="/restaurant-search" element={<RestaurantSearchPage />} />

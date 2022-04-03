@@ -44,7 +44,6 @@ function RestaurantSearchPage() {
     if (RestaurantItem === null || RestaurantItem === ' ' || RestaurantItem === undefined || RestaurantItem.length === 0);
     
     else {
-    
       return (
         <>
           {/* Loading animation based boolean setState */}
@@ -70,10 +69,9 @@ function RestaurantSearchPage() {
     setLoadingAnimation(true);
     setTimeout(endAnimation, 4000);
     YELPAPICall(); 
-   
   };
-  const handleSubmit = (e) => {
 
+  const handleSubmit = (e) => {
     e.preventDefault()
   }
 
@@ -87,13 +85,9 @@ function RestaurantSearchPage() {
   const renderLoadingAnimation = () => {
   
     if (LoadingAnimation === false); 
-
     else if (LoadingAnimation === true){
-
       return (
-          
         <LoadingAnimation />
-
       )
     }
   }

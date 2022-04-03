@@ -10,7 +10,6 @@ const TripsList = () => {
   const [databaseRender, setDatabaseRender] = useState(false);
   const [buttonClickedValueSetting, setbuttonClickedValueSetting] = useState("");
   const [city, setCity] = useState("");
-  const [videoMenu, setVideoMenu] = useState(false); 
   const [removeTripState, setRemoveTripState] = useState(false);
   const [prompt, setPrompt] = useState(false);
   const [errorFirebase, setErrorFirebase] = useState(false); 
@@ -64,26 +63,12 @@ const TripsList = () => {
     );
     else {
       return (
-        <div
-          className={`RemoveMenu${
-            removeTripState ? " openRemovedTripMenu" : " closedRemovedTripMenu"
-          }`}
-        >
+        <div className={`RemoveMenu${removeTripState ? " openRemovedTripMenu" : " closedRemovedTripMenu"}`}>
           {Object.keys(productList).map((key, index) => (
-            <button onMouseEnter={clickSoundPlay} onMouseOut={clickSoundPause}
-              key={index}
-              onClick={(event) => {
-                setCity(event.target.value);
-                handleRemoveTrip();
-              }}
-              value={productList[`${key}`].name}
-            >
-              {productList[`${key}`].name}
-            </button>
+            <button key={index} onClick={(event) => {setCity(event.target.value); handleRemoveTrip();}}value={productList[`${key}`].name}>
+            {productList[`${key}`].name}</button>
           ))}
-              <button onClick={() => {rickMe();
-          }}>Extra Special Trip</button>
-            <button className="removeTripButtonInMenu" onClick={() => setRemoveTripState(false)}>Close Menu</button>
+          <button className="removeTripButtonInMenu" onClick={() => setRemoveTripState(false)}>Close Menu</button>
         </div>
       );
     }
@@ -112,52 +97,12 @@ const TripsList = () => {
     }
   };
 
-  //Rick roll
-  const rickMe = () =>{
- 
-    let video = document.getElementById('RickMe');
-    
-    if (videoMenu === true) { 
-      video.volume = 1; 
-      video.pause(); 
-   
-    }
-
-    else {
-      video.volume = 1; 
-      video.play();
-    }
-      setVideoMenu((videoMenu) => !videoMenu);
- }
- const clickSoundPlay = () => {
-    
-    let audio = document.getElementById('beep');
-    audio.volume = 0.5; 
-    audio.play();
-    audio.currentTime=0;
-
-  }
-
-  const clickSoundPause = () => {
-    let audio = document.getElementById('beep');
-    audio.pause();
-
-  }
-
   const renderFirebaseError = () => { 
 
     if (errorFirebase === true) {
-      
-
-      return (
-
-        <p>Nothing to see here, add some trips!</p>
-      )
+      return (<p>Nothing to see here, add some trips!</p>)
     }
-
     else if (errorFirebase === false); 
-    
-    
   }
 
   //Conditional rendering my trips page, restaurant saved, and using firebase
@@ -167,24 +112,15 @@ const TripsList = () => {
         <section className="savedTripsSection">
           <div className="savedTrips-Wrappper">
             {renderFirebaseError()}
-              <video  className={`RickMe${videoMenu ? " show" : " hide"
-                  }`} id="RickMe" src="./Assets/video/RickMe.mp4"></video>
-              <audio id="beep" src="./Assets/beep.mp3"/>
-          <div className="TitleContainer">
-            <h2>Your Saved Trips!</h2>
-          </div>
-          {renderMenu()}
-          {renderMap()}
-          {renderPromptMenu()}
-          <div className="removeTrip">
-            <button onMouseEnter={clickSoundPlay} onMouseOut={clickSoundPause}
-              onClick={() => {
-                setRemoveTripState((removeTripState) => !removeTripState);
-              }}
-              className="removeTripButton"
-              >
-              Remove Trip
-              </button>
+            <div className="TitleContainer">
+              <h2>Your Saved Trips!</h2>
+            </div>
+            {renderMenu()}
+            {renderMap()}
+            {renderPromptMenu()}
+            <div className="removeTrip">
+              <button onClick={() => {setRemoveTripState((removeTripState) => !removeTripState);}}
+              className="removeTripButton">Remove Trip</button>
             </div>
           </div>
         </section>
@@ -211,10 +147,7 @@ const TripsList = () => {
         <ul className="FirebaseTripUserSaved">
           {Object.keys(productList).map((key, index) => (
             <li id={`${key}`} key={index}>
-              <button onMouseEnter={clickSoundPlay} onMouseOut={clickSoundPause}
-                onClick={buttonClickedValue}
-                value={productList[`${key}`].name}
-              >
+              <button onClick={buttonClickedValue} value={productList[`${key}`].name}>
                 {productList[`${key}`].name}
               </button>
             </li>
@@ -223,7 +156,6 @@ const TripsList = () => {
       );
     }
   };
-
   return <>{renderDataBase()}</>;
 };
 

@@ -2,7 +2,6 @@ import { getDatabase, set, ref } from 'firebase/database';
 import { useState } from 'react';
 
 const AddNotes = (props) => {
-
     const [ userNote, setUserNote ] = useState("");
     const [ formOpen, setFormOpen ] = useState(false);
 

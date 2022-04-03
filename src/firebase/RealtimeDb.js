@@ -12,13 +12,11 @@ const RealtimeDb = (props) => {
 
   let UserCitySelected = props.buttonClicked;
   
-  //Firebase use effect ********************************************RYAN PLZ REMEMBER TO CHANGE PRODUCTLIST TO RESTAURANT LIST EVERYWHERE **************************************************
+  //Firebase use effect 
   useEffect(() => {
       
     const dbRootAddress = ref(database, `City/${UserCitySelected}/Restaurant/`);
-      onValue(
-        dbRootAddress,
-        (response) => {
+      onValue( dbRootAddress,(response) => {
           if (response.val() === null) {
             setRestaurantList([]);
           } else {
@@ -48,22 +46,12 @@ const RealtimeDb = (props) => {
           {Object.keys(restaurantList).map((key, index) => (
             <li id={`${key}`} key={index}>
               <h3>{restaurantList[`${key}`].name}</h3>
-              <img
-                src={restaurantList[`${key}`].image}
-                alt={restaurantList[`${key}`].name}
-              />
+              <img src={restaurantList[`${key}`].image} alt={restaurantList[`${key}`].name}/>
               <p>Notes: {restaurantList[`${key}`].message}</p>
               <div className="databaseButtonContainer">
                 <AddNotes restaurantName={restaurantList[`${key}`].name} cityName={UserCitySelected} restImage={restaurantList[`${key}`].image}/>
-                <button
-                  value={`${key}`}
-                  onClick={(event) => {
-                    setSingleRestaurant(`${event.target.value}`);
-                    handleRemoveTrip();
-                  }}
-                >
-                  Remove Restaurant
-                </button>
+                <button value={`${key}`} onClick={(event) => {setSingleRestaurant(`${event.target.value}`); handleRemoveTrip();}}
+                >Remove Restaurant</button>
               </div>
             </li>
           ))}
@@ -78,23 +66,18 @@ const RealtimeDb = (props) => {
 
   //Handles remove restaurant 
   const handleRemoveRestaurant = () => {
-
-    
       const databaseReference = ref(database, `City/${UserCitySelected}/Restaurant/${singleRestaurant}`);
       remove(databaseReference);
       setPrompt(false);
-    
     if (
       restaurantList === null ||
       restaurantList === undefined ||
       restaurantList === "" ||
       restaurantList.length === 0
     ) { 
-
       const databaseReference = ref(database, `City/${UserCitySelected}/`);
       remove(databaseReference);
       setPrompt(false);
-
     }
   };
 
@@ -105,19 +88,12 @@ const RealtimeDb = (props) => {
               <h2>My Stops in {UserCitySelected}!</h2>
             </div>
         {renderMap()}
-
         {/* Prompt to remove restaurant */}
         <div className={`prompt${prompt ? " opened" : " closed"}`}>
           <p>Are you sure you want to remove this restaurant?</p>
           <div className="promptButtonContainer">
-             <button
-            onClick={() => {
-              handleRemoveRestaurant();
-            }}
-          >
-            Yes, remove
-          </button>
-          <button onClick={() => setPrompt(false)}>No, go back</button>
+            <button onClick={() => {handleRemoveRestaurant();}}>Yes, remove</button>
+            <button onClick={() => setPrompt(false)}>No, go back</button>
           </div>
         </div>
       </div>
